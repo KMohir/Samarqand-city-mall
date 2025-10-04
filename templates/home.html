@@ -7,11 +7,19 @@
 <!-- Hero секция -->
 <section class="hero">
     <div class="hero-content">
-        <h1 class="hero-title">SAMARKAND CITY MALL</h1>
-        <p class="hero-subtitle">Современный торговый центр в сердце Самарканда</p>
+        <h1 class="hero-title">CITY MALL</h1>
+        <p class="hero-subtitle">SAMARKAND</p>
         <a href="{% url 'core:catalog' 'shops' %}" class="hero-button">Наши магазины</a>
     </div>
     <div class="hero-overlay"></div>
+    <!-- Декоративные круги -->
+    <div class="hero-circles">
+        <span class="circle circle-1"></span>
+        <span class="circle circle-2"></span>
+        <span class="circle circle-3"></span>
+        <span class="circle circle-4"></span>
+        <span class="circle circle-5"></span>
+    </div>
 </section>
 
 <!-- Секция "О нас" -->
@@ -83,9 +91,36 @@
             {% for category in all_categories %}
             <a href="{% url 'core:catalog' category.slug %}" class="category-card">
                 <div class="category-card-content">
-                    {% if category.icon %}
-                    <img src="{{ category.icon.url }}" alt="{{ category.name }}" class="category-icon">
-                    {% endif %}
+                    <div class="category-icon">
+                        {% if category.name == "Магазины" %}
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                            <line x1="3" y1="6" x2="21" y2="6"/>
+                            <path d="M16 10a4 4 0 0 1-8 0"/>
+                        </svg>
+                        {% elif category.name == "Кафе и рестораны" %}
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 2v7c0 1.1.9 2 2 2h4v11a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V11h4c1.1 0 2-.9 2-2V2"/>
+                            <path d="M8 22h8"/>
+                        </svg>
+                        {% elif category.name == "Развлечения" %}
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"/>
+                            <path d="M12 8v4"/>
+                            <path d="M8 12h8"/>
+                        </svg>
+                        {% elif category.name == "Услуги" %}
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                        </svg>
+                        {% else %}
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                        {% endif %}
+                    </div>
                     <h3 class="category-name">{{ category.name }}</h3>
                 </div>
             </a>
