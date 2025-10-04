@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Новости - Samarkand City Mall{% endblock %}
+
+{% block content %}
+<section class="news-section">
+    <div class="container">
+        <h1 class="page-title">Новости и акции</h1>
+        
+        <div class="news-grid">
+            {% for news in news_list %}
+            <article class="news-card">
+                <a href="{% url 'core:news_detail' news.slug %}" class="news-card-link">
+                    {% if news.image %}
+                    <div class="news-image">
+                        <img src="{{ news.image.url }}" alt="{{ news.title }}">
+                    </div>
+                    {% endif %}
+                    <div class="news-content">
+                        <h2 class="news-title">{{ news.title }}</h2>
+                        <p class="news-date">{{ news.published_date|date:"d F Y" }}</p>
+                        <div class="news-excerpt">
+                            {{ news.content|truncatewords:30 }}
+                        </div>
+                    </div>
+                </a>
+            </article>
+            {% empty %}
+            <p class="no-items">Новости скоро появятся</p>
+            {% endfor %}
+        </div>
+        
+        <!-- Пагинация -->
+        {% if is_paginated %}
+        <div class="pagination">
+            {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}" class="pagination-link">Назад</a>
+            {% endif %}
+            
+            <span class="pagination-current">Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+            
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="pagination-link">Вперед</a>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
+

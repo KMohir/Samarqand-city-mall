@@ -1,0 +1,70 @@
+{% load static %}
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <!-- Навигационные ссылки -->
+            <div class="footer-section footer-links">
+                <div class="footer-links-columns">
+                    <div class="footer-column">
+                        <ul>
+                            <li><a href="#">Вопрос-ответ</a></li>
+                            <li><a href="{% url 'core:catalog' 'shops' %}">Магазины</a></li>
+                            <li><a href="#">Рекламные возможности</a></li>
+                            <li><a href="#">Контакты</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <ul>
+                            <li><a href="#">Карта</a></li>
+                            <li><a href="#">Вакансии</a></li>
+                            <li><a href="#">Аренда</a></li>
+                            <li><a href="#">Парковка</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Контактная информация -->
+            <div class="footer-section footer-contact">
+                <div class="contact-item">
+                    <h4>Адрес</h4>
+                    <p>г. Самарканд, ул. Амира Темура</p>
+                </div>
+                <div class="contact-item">
+                    <h4>Телефон</h4>
+                    <p><a href="tel:+998980002200">+998 98-000-22-00</a></p>
+                </div>
+            </div>
+            
+            <!-- Социальные сети -->
+            <div class="footer-section footer-social">
+                <h4>Мы в соцсетях</h4>
+                <div class="social-links">
+                    <a href="#" class="social-link" aria-label="Instagram">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="18" cy="6" r="1" fill="currentColor"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Facebook">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Telegram">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <p>&copy; SAMARKAND CITY 2025. Все права защищены.</p>
+        </div>
+    </div>
+</footer>
+

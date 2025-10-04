@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Поиск: {{ search_query }} - Samarkand City Mall{% endblock %}
+
+{% block content %}
+<section class="search-section">
+    <div class="container">
+        <h1 class="page-title">Поиск</h1>
+        
+        <!-- Форма поиска -->
+        <form method="get" class="search-form">
+            <div class="search-input-group">
+                <input type="text" name="q" value="{{ search_query }}" 
+                       placeholder="Введите название магазина или ресторана..." 
+                       class="search-input" required>
+                <button type="submit" class="search-button">Найти</button>
+            </div>
+        </form>
+        
+        {% if search_query %}
+        <p class="search-info">Результаты поиска для: <strong>{{ search_query }}</strong></p>
+        
+        <div class="tenants-grid">
+            {% for tenant in search_results %}
+            <a href="{% url 'core:tenant_detail' tenant.slug %}" class="tenant-card">
+                <div class="tenant-logo">
+                    {% if tenant.logo %}
+                    <img src="{{ tenant.logo.url }}" alt="{{ tenant.name }}">
+                    {% else %}
+                    <div class="tenant-logo-placeholder">{{ tenant.name|slice:":1" }}</div>
+                    {% endif %}
+                </div>
+                <div class="tenant-info">
+                    <h3 class="tenant-name">{{ tenant.name }}</h3>
+                    <p class="tenant-floor">{{ tenant.floor }}</p>
+                    <p class="tenant-category">{{ tenant.category.name }}</p>
+                </div>
+            </a>
+            {% empty %}
+            <div class="no-results">
+                <p>По вашему запросу ничего не найдено</p>
+                <p>Попробуйте изменить поисковый запрос</p>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <!-- Пагинация -->
+        {% if is_paginated %}
+        <div class="pagination">
+            {% if page_obj.has_previous %}
+            <a href="?q={{ search_query }}&page={{ page_obj.previous_page_number }}" class="pagination-link">Назад</a>
+            {% endif %}
+            
+            <span class="pagination-current">Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+            
+            {% if page_obj.has_next %}
+            <a href="?q={{ search_query }}&page={{ page_obj.next_page_number }}" class="pagination-link">Вперед</a>
+            {% endif %}
+        </div>
+        {% endif %}
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
+

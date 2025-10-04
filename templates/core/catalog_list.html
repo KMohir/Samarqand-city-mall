@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ current_category.name }} - Samarkand City Mall{% endblock %}
+
+{% block content %}
+<section class="catalog-section">
+    <div class="container">
+        <!-- Заголовок каталога -->
+        <div class="catalog-header">
+            <h1 class="page-title">{{ current_category.name }}</h1>
+            <div class="catalog-controls">
+                <button class="view-toggle" id="viewToggle" data-view="grid">
+                    <span class="toggle-icon grid-icon active">⊞</span>
+                    <span class="toggle-icon list-icon">☰</span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="catalog-content">
+            <!-- Панель фильтров -->
+            <aside class="filters-sidebar">
+                <div class="filters-container">
+                    <h3 class="filters-title">Фильтры</h3>
+                    
+                    <form method="get" class="filters-form" id="filtersForm">
+                        <!-- Сортировка -->
+                        <div class="filter-group">
+                            <h4 class="filter-group-title">Сортировка</h4>
+                            <select name="sort" class="filter-select" onchange="this.form.submit()">
+                                <option value="">По умолчанию</option>
+                                <option value="az" {% if current_sort == 'az' %}selected{% endif %}>По алфавиту (А-Я)</option>
+                                <option value="za" {% if current_sort == 'za' %}selected{% endif %}>По алфавиту (Я-А)</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Фильтры -->
+                        <div class="filter-group">
+                            <h4 class="filter-group-title">Особенности</h4>
+                            
+                            <label class="filter-checkbox">
+                                <input type="checkbox" name="has_promotions" value="true" 
+                                       {% if active_filters.has_promotions %}checked{% endif %}
+                                       onchange="this.form.submit()">
+                                <span>Акции и скидки</span>
+                            </label>
+                            
+                            <label class="filter-checkbox">
+                                <input type="checkbox" name="has_loyalty_program" value="true" 
+                                       {% if active_filters.has_loyalty_program %}checked{% endif %}
+                                       onchange="this.form.submit()">
+                                <span>Программа лояльности</span>
+                            </label>
+                            
+                            <label class="filter-checkbox">
+                                <input type="checkbox" name="has_delivery" value="true" 
+                                       {% if active_filters.has_delivery %}checked{% endif %}
+                                       onchange="this.form.submit()">
+                                <span>Доставка</span>
+                            </label>
+                            
+                            <label class="filter-checkbox">
+                                <input type="checkbox" name="has_business_lunch" value="true" 
+                                       {% if active_filters.has_business_lunch %}checked{% endif %}
+                                       onchange="this.form.submit()">
+                                <span>Бизнес-ланч</span>
+                            </label>
+                            
+                            <label class="filter-checkbox">
+                                <input type="checkbox" name="is_temporarily_closed" value="true" 
+                                       {% if active_filters.is_temporarily_closed %}checked{% endif %}
+                                       onchange="this.form.submit()">
+                                <span>Временно закрыто</span>
+                            </label>
+                        </div>
+                        
+                        <button type="button" class="filter-reset" onclick="window.location.href='{% url 'core:catalog' current_category.slug %}'">
+                            Сбросить фильтры
+                        </button>
+                    </form>
+                </div>
+            </aside>
+            
+            <!-- Список арендаторов -->
+            <div class="catalog-main">
+                <div class="tenants-grid" id="tenantsContainer">
+                    {% for tenant in tenants %}
+                    <a href="{% url 'core:tenant_detail' tenant.slug %}" class="tenant-card">
+                        <div class="tenant-logo">
+                            {% if tenant.logo %}
+                            <img src="{{ tenant.logo.url }}" alt="{{ tenant.name }}">
+                            {% else %}
+                            <div class="tenant-logo-placeholder">{{ tenant.name|slice:":1" }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="tenant-info">
+                            <h3 class="tenant-name">{{ tenant.name }}</h3>
+                            <p class="tenant-floor">{{ tenant.floor }}</p>
+                            {% if tenant.has_promotions %}
+                            <span class="tenant-badge promotion">Акции</span>
+                            {% endif %}
+                            {% if tenant.is_temporarily_closed %}
+                            <span class="tenant-badge closed">Временно закрыто</span>
+                            {% endif %}
+                        </div>
+                    </a>
+                    {% empty %}
+                    <div class="no-results">
+                        <p>По выбранным фильтрам ничего не найдено</p>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <!-- Пагинация -->
+                {% if is_paginated %}
+                <div class="pagination">
+                    {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}" class="pagination-link">Назад</a>
+                    {% endif %}
+                    
+                    <span class="pagination-current">Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+                    
+                    {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}" class="pagination-link">Вперед</a>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+

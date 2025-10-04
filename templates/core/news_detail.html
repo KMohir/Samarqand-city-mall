@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ news.title }} - Samarkand City Mall{% endblock %}
+
+{% block content %}
+<article class="news-detail">
+    <div class="container">
+        <div class="news-detail-content">
+            <h1 class="news-detail-title">{{ news.title }}</h1>
+            <p class="news-detail-date">{{ news.published_date|date:"d F Y" }}</p>
+            
+            {% if news.image %}
+            <div class="news-detail-image">
+                <img src="{{ news.image.url }}" alt="{{ news.title }}">
+            </div>
+            {% endif %}
+            
+            <div class="news-detail-body">
+                {{ news.content|linebreaks }}
+            </div>
+            
+            <a href="{% url 'core:news_list' %}" class="back-button">← Вернуться к новостям</a>
+        </div>
+    </div>
+</article>
+{% endblock %}
+

@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Samarkand City Mall - Главная{% endblock %}
+
+{% block content %}
+<!-- Hero секция -->
+<section class="hero">
+    <div class="hero-content">
+        <h1 class="hero-title">SAMARKAND CITY MALL</h1>
+        <p class="hero-subtitle">Современный торговый центр в сердце Самарканда</p>
+        <a href="{% url 'core:catalog' 'shops' %}" class="hero-button">Наши магазины</a>
+    </div>
+    <div class="hero-overlay"></div>
+</section>
+
+<!-- Секция "О нас" -->
+<section class="about-section">
+    <div class="container">
+        <div class="about-content">
+            <h2 class="section-title">Добро пожаловать в Samarkand City Mall</h2>
+            <p class="about-text">
+                Современный торговый центр, объединяющий лучшие мировые и локальные бренды. 
+                У нас вы найдете магазины одежды, кафе и рестораны, развлекательные зоны 
+                и множество других сервисов для комфортного шопинга и отдыха.
+            </p>
+            <div class="about-features">
+                <div class="feature-item">
+                    <div class="feature-icon">🛍️</div>
+                    <h3>100+ магазинов</h3>
+                    <p>Широкий выбор брендов</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🍽️</div>
+                    <h3>30+ ресторанов</h3>
+                    <p>Кухни мира</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎬</div>
+                    <h3>Развлечения</h3>
+                    <p>Кинотеатр и игровые зоны</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🅿️</div>
+                    <h3>Парковка</h3>
+                    <p>1000+ парковочных мест</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Секция брендов -->
+<section class="brands-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Наши бренды</h2>
+            <a href="{% url 'core:catalog' 'shops' %}" class="section-link">Смотреть все</a>
+        </div>
+        <div class="brands-grid">
+            {% for brand in brand_list %}
+            <div class="brand-item">
+                <div class="brand-logo">
+                    {% if brand.logo %}
+                    <img src="{{ brand.logo.url }}" alt="{{ brand.name }}">
+                    {% else %}
+                    <span class="brand-name">{{ brand.name }}</span>
+                    {% endif %}
+                </div>
+            </div>
+            {% empty %}
+            <p class="no-items">Бренды скоро появятся</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Секция категорий -->
+<section class="categories-section">
+    <div class="container">
+        <h2 class="section-title">Категории</h2>
+        <div class="categories-grid">
+            {% for category in all_categories %}
+            <a href="{% url 'core:catalog' category.slug %}" class="category-card">
+                <div class="category-card-content">
+                    {% if category.icon %}
+                    <img src="{{ category.icon.url }}" alt="{{ category.name }}" class="category-icon">
+                    {% endif %}
+                    <h3 class="category-name">{{ category.name }}</h3>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Секция новостей -->
+<section class="news-preview-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Новости и акции</h2>
+            <a href="{% url 'core:news_list' %}" class="section-link">Все новости</a>
+        </div>
+        <div class="news-preview-grid">
+            <!-- Здесь можно добавить последние новости -->
+            <div class="news-preview-placeholder">
+                <p>Следите за нашими новостями и специальными предложениями</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+

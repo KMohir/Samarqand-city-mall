@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ tenant.name }} - Samarkand City Mall{% endblock %}
+
+{% block content %}
+<!-- Заголовок с обложкой -->
+<section class="tenant-header" {% if tenant.cover_image %}style="background-image: url('{{ tenant.cover_image.url }}');"{% endif %}>
+    <div class="tenant-header-overlay"></div>
+    <div class="container">
+        <div class="tenant-header-content">
+            <div class="tenant-header-logo">
+                {% if tenant.logo %}
+                <img src="{{ tenant.logo.url }}" alt="{{ tenant.name }}">
+                {% endif %}
+            </div>
+            <h1 class="tenant-header-title">{{ tenant.name }}</h1>
+            {% if tenant.brand %}
+            <p class="tenant-header-brand">{{ tenant.brand.name }}</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- Основная информация -->
+<section class="tenant-details">
+    <div class="container">
+        <div class="tenant-details-grid">
+            <!-- Основная информация -->
+            <div class="tenant-main-info">
+                <h2 class="section-title">О магазине</h2>
+                <div class="tenant-description">
+                    {{ tenant.description|linebreaks }}
+                </div>
+                
+                <!-- Особенности -->
+                {% if tenant.has_promotions or tenant.has_loyalty_program or tenant.has_delivery or tenant.has_business_lunch %}
+                <div class="tenant-features">
+                    <h3>Особенности</h3>
+                    <div class="features-list">
+                        {% if tenant.has_promotions %}
+                        <span class="feature-badge">Акции и скидки</span>
+                        {% endif %}
+                        {% if tenant.has_loyalty_program %}
+                        <span class="feature-badge">Программа лояльности</span>
+                        {% endif %}
+                        {% if tenant.has_delivery %}
+                        <span class="feature-badge">Доставка</span>
+                        {% endif %}
+                        {% if tenant.has_business_lunch %}
+                        <span class="feature-badge">Бизнес-ланч</span>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            
+            <!-- Контактная информация -->
+            <aside class="tenant-sidebar">
+                <div class="tenant-info-card">
+                    <h3>Контакты и расположение</h3>
+                    
+                    {% if tenant.floor %}
+                    <div class="info-item">
+                        <div class="info-label">Этаж</div>
+                        <div class="info-value">{{ tenant.floor }}</div>
+                    </div>
+                    {% endif %}
+                    
+                    {% if tenant.location_on_map %}
+                    <div class="info-item">
+                        <div class="info-label">Расположение</div>
+                        <div class="info-value">{{ tenant.location_on_map }}</div>
+                    </div>
+                    {% endif %}
+                    
+                    {% if tenant.operating_hours %}
+                    <div class="info-item">
+                        <div class="info-label">Часы работы</div>
+                        <div class="info-value">{{ tenant.operating_hours|linebreaks }}</div>
+                    </div>
+                    {% endif %}
+                    
+                    {% if tenant.phone_number %}
+                    <div class="info-item">
+                        <div class="info-label">Телефон</div>
+                        <div class="info-value">
+                            <a href="tel:{{ tenant.phone_number }}">{{ tenant.phone_number }}</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    {% if tenant.website_url %}
+                    <div class="info-item">
+                        <div class="info-label">Веб-сайт</div>
+                        <div class="info-value">
+                            <a href="{{ tenant.website_url }}" target="_blank" rel="noopener">Перейти на сайт</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    {% if tenant.is_temporarily_closed %}
+                    <div class="info-item warning">
+                        <div class="info-value">⚠️ Временно закрыто</div>
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <a href="{% url 'core:catalog' tenant.category.slug %}" class="back-button">
+                    ← Вернуться к {{ tenant.category.name|lower }}
+                </a>
+            </aside>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
