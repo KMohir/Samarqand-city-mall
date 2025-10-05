@@ -556,47 +556,94 @@ a:hover {
    О НАС СЕКЦИЯ
    ========================================== */
 
-.about-text {
-    font-size: 18px;
-    line-height: 1.8;
-    color: var(--color-text-secondary);
-    margin-bottom: 40px;
-    max-width: 800px;
+/* ==========================================
+   КАТЕГОРИИ
+   ========================================== */
+
+.categories-section {
+    background: linear-gradient(135deg, #FAF4E8 0%, #F5EFE0 100%);
+    padding: 80px 0;
 }
 
-.about-features {
+.categories-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.feature-item {
-    background-color: var(--color-bg-secondary);
-    padding: 30px;
-    border-radius: 12px;
+.category-card {
+    background: linear-gradient(135deg, #2C3E50 0%, #34495E 100%);
+    padding: 50px 30px;
+    border-radius: 16px;
     text-align: center;
-    transition: var(--transition);
-    border: 1px solid var(--color-border);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    min-height: 200px;
 }
 
-.feature-item:hover {
-    transform: translateY(-5px);
-    border-color: var(--color-accent);
+.category-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #34495E 0%, #2C3E50 100%);
 }
 
-.feature-icon {
-    font-size: 48px;
-    margin-bottom: 15px;
+.category-icon-circle {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.feature-item h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    color: var(--color-accent);
+.category-svg-icon {
+    width: 72px;
+    height: 72px;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
-.feature-item p {
-    color: var(--color-text-muted);
+.category-card:hover .category-svg-icon {
+    transform: scale(1.1);
+}
+
+/* Цветные иконки категорий */
+.category-color-shops {
+    color: #4A90E2 !important; /* Синий для магазинов */
+    filter: none !important;
+}
+
+.category-color-food {
+    color: #E74C3C !important; /* Красный для кафе */
+    filter: none !important;
+}
+
+.category-color-entertainment {
+    color: #9B59B6 !important; /* Фиолетовый для развлечений */
+    filter: none !important;
+}
+
+.category-color-services {
+    color: #27AE60 !important; /* Зеленый для услуг */
+    filter: none !important;
+}
+
+.category-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin: 0;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.category-card:hover .category-title {
+    color: #FFFFFF;
 }
 
 /* ==========================================
@@ -1478,6 +1525,91 @@ a:hover {
     
     .categories-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================
+   SVG ИКОНКИ
+   ========================================== */
+
+/* Базовые стили для SVG иконок */
+svg {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Стили для иконок в header */
+.header-icon {
+    fill: currentColor;
+    transition: var(--transition);
+}
+
+.header-link:hover .header-icon {
+    fill: var(--color-accent);
+}
+
+/* Стили для логотипа */
+.logo-svg {
+    height: 60px;
+    width: auto;
+    fill: var(--color-text-primary);
+    transition: var(--transition);
+}
+
+.logo:hover .logo-svg {
+    fill: var(--color-accent);
+}
+
+/* Стили для иконки меню */
+.menu-icon {
+    fill: currentColor;
+    transition: var(--transition);
+}
+
+.mobile-menu-toggle:hover .menu-icon {
+    fill: var(--color-accent);
+}
+
+/* Стили для иконок поиска */
+.search-icon {
+    fill: currentColor;
+    margin-right: 0.5rem;
+}
+
+.search-button:hover .search-icon {
+    fill: white;
+}
+
+/* Стили для иконок в карточках */
+.tenant-icon {
+    fill: var(--color-text-muted);
+    transition: var(--transition);
+}
+
+.tenant-card:hover .tenant-icon {
+    fill: var(--color-accent);
+}
+
+/* Адаптивные размеры для иконок */
+@media (max-width: 768px) {
+    .logo-svg {
+        height: 50px;
+    }
+    
+    .header-icon {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-svg {
+        height: 40px;
+    }
+    
+    .header-icon {
+        width: 12px;
+        height: 12px;
     }
 }
 

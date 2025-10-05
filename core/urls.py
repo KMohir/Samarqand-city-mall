@@ -22,5 +22,8 @@ urlpatterns = [
     
     # Поиск
     path('search/', views.SearchView.as_view(), name='search'),
+    
+    # Примеры SVG иконок
+    path('svg-examples/', views.SvgExamplesView.as_view(), name='svg_examples'),
 ]
 

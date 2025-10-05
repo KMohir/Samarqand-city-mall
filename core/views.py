@@ -144,3 +144,10 @@ class SearchView(ListView):
         context['search_query'] = self.request.GET.get('q', '')
         return context
 
+
+class SvgExamplesView(TemplateView):
+    """
+    Страница с примерами использования SVG иконок.
+    """
+    template_name = 'svg_examples.html'
+

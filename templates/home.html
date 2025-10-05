@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load svg_tags %}
 
 {% block title %}Samarkand City Mall - Главная{% endblock %}
 
@@ -7,8 +8,8 @@
 <!-- Hero секция -->
 <section class="hero">
     <div class="hero-content">
-        <h1 class="hero-title">CITY MALL</h1>
-        <p class="hero-subtitle">SAMARKAND</p>
+        <h1 class="hero-title">SAMARKAND</h1>
+        <p class="hero-subtitle">CITY MALL</p>
         <a href="{% url 'core:catalog' 'shops' %}" class="hero-button">Наши магазины</a>
     </div>
     <div class="hero-overlay"></div>
@@ -22,38 +23,29 @@
     </div>
 </section>
 
-<!-- Секция "О нас" -->
-<section class="about-section">
+<!-- Секция категорий -->
+<section class="categories-section">
     <div class="container">
-        <div class="about-content">
-            <h2 class="section-title">Добро пожаловать в Samarkand City Mall</h2>
-            <p class="about-text">
-                Современный торговый центр, объединяющий лучшие мировые и локальные бренды. 
-                У нас вы найдете магазины одежды, кафе и рестораны, развлекательные зоны 
-                и множество других сервисов для комфортного шопинга и отдыха.
-            </p>
-            <div class="about-features">
-                <div class="feature-item">
-                    <div class="feature-icon">🛍️</div>
-                    <h3>100+ магазинов</h3>
-                    <p>Широкий выбор брендов</p>
+        <h2 class="section-title">Категории</h2>
+        <div class="categories-grid">
+            {% for category in all_categories %}
+            <a href="{% url 'core:catalog' category.slug %}" class="category-card">
+                <div class="category-icon-circle">
+                    {% if category.slug == 'cafes' %}
+                        {% svg_icon "utensils-bright" "category-svg-icon" "72" "72" %}
+                    {% elif category.slug == 'shops' %}
+                        {% svg_icon "shopping-bag-bright" "category-svg-icon" "72" "72" %}
+                    {% elif category.slug == 'entertainment' %}
+                        {% svg_icon "film-bright" "category-svg-icon" "72" "72" %}
+                    {% elif category.slug == 'services' %}
+                        {% svg_icon "hand-bright" "category-svg-icon" "72" "72" %}
+                    {% else %}
+                        {% svg_icon "shopping-bag-bright" "category-svg-icon" "72" "72" %}
+                    {% endif %}
                 </div>
-                <div class="feature-item">
-                    <div class="feature-icon">🍽️</div>
-                    <h3>30+ ресторанов</h3>
-                    <p>Кухни мира</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">🎬</div>
-                    <h3>Развлечения</h3>
-                    <p>Кинотеатр и игровые зоны</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">🅿️</div>
-                    <h3>Парковка</h3>
-                    <p>1000+ парковочных мест</p>
-                </div>
-            </div>
+                <h3 class="category-title">{{ category.name }}</h3>
+            </a>
+            {% endfor %}
         </div>
     </div>
 </section>
@@ -83,51 +75,6 @@
     </div>
 </section>
 
-<!-- Секция категорий -->
-<section class="categories-section">
-    <div class="container">
-        <h2 class="section-title">Категории</h2>
-        <div class="categories-grid">
-            {% for category in all_categories %}
-            <a href="{% url 'core:catalog' category.slug %}" class="category-card">
-                <div class="category-card-content">
-                    <div class="category-icon">
-                        {% if category.name == "Магазины" %}
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-                            <line x1="3" y1="6" x2="21" y2="6"/>
-                            <path d="M16 10a4 4 0 0 1-8 0"/>
-                        </svg>
-                        {% elif category.name == "Кафе и рестораны" %}
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M3 2v7c0 1.1.9 2 2 2h4v11a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V11h4c1.1 0 2-.9 2-2V2"/>
-                            <path d="M8 22h8"/>
-                        </svg>
-                        {% elif category.name == "Развлечения" %}
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"/>
-                            <path d="M12 8v4"/>
-                            <path d="M8 12h8"/>
-                        </svg>
-                        {% elif category.name == "Услуги" %}
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="3"/>
-                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-                        </svg>
-                        {% else %}
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M12 6v6l4 2"/>
-                        </svg>
-                        {% endif %}
-                    </div>
-                    <h3 class="category-name">{{ category.name }}</h3>
-                </div>
-            </a>
-            {% endfor %}
-        </div>
-    </div>
-</section>
 
 <!-- Секция новостей -->
 <section class="news-preview-section">

@@ -1,0 +1,59 @@
+<svg width="400" height="120" viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Основной щит с закругленными углами -->
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="2" stdDeviation="2" flood-color="rgba(0,0,0,0.3)"/>
+    </filter>
+  </defs>
+  
+  <!-- Внешний контур щита -->
+  <path d="M25 35 
+           Q25 15 45 15 
+           L355 15 
+           Q375 15 375 35 
+           L375 85 
+           Q375 105 355 105 
+           L45 105 
+           Q25 105 25 85 
+           Z" 
+        fill="#000000" 
+        stroke="#000000" 
+        stroke-width="3"
+        filter="url(#shadow)"/>
+  
+  <!-- Внутренний контур -->
+  <path d="M35 30 
+           Q35 20 45 20 
+           L355 20 
+           Q365 20 365 30 
+           L365 80 
+           Q365 90 355 90 
+           L45 90 
+           Q35 90 35 80 
+           Z" 
+        fill="none" 
+        stroke="#FFFFFF" 
+        stroke-width="1"/>
+  
+  <!-- Декоративные элементы -->
+  <circle cx="60" cy="55" r="3" fill="#FFFFFF" opacity="0.7"/>
+  <circle cx="340" cy="55" r="3" fill="#FFFFFF" opacity="0.7"/>
+  
+  <!-- Текст SAMARKAND -->
+  <text x="200" y="52" 
+        text-anchor="middle" 
+        fill="#FFFFFF" 
+        font-family="Arial, sans-serif" 
+        font-size="26" 
+        font-weight="900" 
+        letter-spacing="3px">SAMARKAND</text>
+  
+  <!-- Текст CITY MALL -->
+  <text x="200" y="78" 
+        text-anchor="middle" 
+        fill="#FFFFFF" 
+        font-family="Arial, sans-serif" 
+        font-size="20" 
+        font-weight="600" 
+        letter-spacing="4px">CITY MALL</text>
+</svg>

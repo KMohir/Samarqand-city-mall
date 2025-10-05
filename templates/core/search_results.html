@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load svg_tags %}
 
 {% block title %}Поиск: {{ search_query }} - Samarkand City Mall{% endblock %}
 
@@ -14,7 +15,10 @@
                 <input type="text" name="q" value="{{ search_query }}" 
                        placeholder="Введите название магазина или ресторана..." 
                        class="search-input" required>
-                <button type="submit" class="search-button">Найти</button>
+                <button type="submit" class="search-button">
+                    {% svg_icon "poisk" "search-icon" "16" "16" %}
+                    Найти
+                </button>
             </div>
         </form>
         

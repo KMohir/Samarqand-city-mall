@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Иконки - Демо | Samarkand City Mall</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: #f5f5f5;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+        }
+        
+        h1 .orange {
+            color: #FF6600;
+        }
+        
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .category-card {
+            background: #D1B898;
+            border-radius: 16px;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+        
+        .category-card .icon-container {
+            margin-bottom: 20px;
+        }
+        
+        .category-card img {
+            filter: brightness(0) invert(1);
+            width: 64px;
+            height: 64px;
+        }
+        
+        .category-card h3 {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .icon-grid {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .icon-grid h2 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            text-align: center;
+        }
+        
+        .icons-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .icon-item {
+            background: #f9f9f9;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+        
+        .icon-item:hover {
+            border-color: #D1B898;
+            background: #fff;
+        }
+        
+        .icon-item img {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .icon-item .name {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .icon-item .file {
+            font-size: 0.75rem;
+            color: #999;
+            margin-top: 5px;
+            font-family: monospace;
+        }
+        
+        .color-variants {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+        
+        .color-variant {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .color-variant:hover {
+            transform: scale(1.1);
+        }
+        
+        .color-variant.white {
+            background: #D1B898;
+        }
+        
+        .color-variant.black {
+            background: #333;
+        }
+        
+        .color-variant.amber {
+            background: #F59E0B;
+        }
+        
+        .color-variant.white img {
+            filter: brightness(0) invert(1);
+        }
+        
+        .color-variant.amber img {
+            filter: brightness(0) invert(1);
+        }
+        
+        .note {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .note strong {
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SAMARKAND <span class="orange">CITY MALL</span></h1>
+        
+        <div class="note">
+            <strong>✨ Демонстрация SVG иконок</strong><br>
+            Все иконки загружаются из папки <code>/svg/</code>
+        </div>
+        
+        <!-- Категории как на сайте -->
+        <h2 style="text-align: center; margin-bottom: 30px; color: #333;">Категории</h2>
+        <div class="categories">
+            <div class="category-card">
+                <div class="icon-container">
+                    <img src="/svg/bag.svg" alt="Магазины">
+                </div>
+                <h3>Магазины</h3>
+            </div>
+            
+            <div class="category-card">
+                <div class="icon-container">
+                    <img src="/svg/food.svg" alt="Кафе и Рестораны">
+                </div>
+                <h3>Кафе и Рестораны</h3>
+            </div>
+            
+            <div class="category-card">
+                <div class="icon-container">
+                    <img src="/svg/pop corn.svg" alt="Развлечения">
+                </div>
+                <h3>Развлечения</h3>
+            </div>
+            
+            <div class="category-card">
+                <div class="icon-container">
+                    <img src="/svg/tex usluga.svg" alt="Услуги">
+                </div>
+                <h3>Услуги</h3>
+            </div>
+        </div>
+        
+        <!-- Все иконки -->
+        <div class="icon-grid">
+            <h2>Все SVG Иконки</h2>
+            <div class="icons-list">
+                <!-- Магазины -->
+                <div class="icon-item">
+                    <img src="/svg/bag.svg" alt="Магазины">
+                    <div class="name">Магазины</div>
+                    <div class="file">bag.svg</div>
+                    <div class="color-variants">
+                        <div class="color-variant black">
+                            <img src="/svg/bag.svg" alt="black" style="width: 24px; height: 24px;">
+                        </div>
+                        <div class="color-variant white">
+                            <img src="/svg/bag.svg" alt="white" style="width: 24px; height: 24px;">
+                        </div>
+                        <div class="color-variant amber">
+                            <img src="/svg/bag.svg" alt="amber" style="width: 24px; height: 24px;">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Еда -->
+                <div class="icon-item">
+                    <img src="/svg/food.svg" alt="Рестораны">
+                    <div class="name">Кафе и Рестораны</div>
+                    <div class="file">food.svg</div>
+                    <div class="color-variants">
+                        <div class="color-variant black">
+                            <img src="/svg/food.svg" alt="black" style="width: 24px; height: 24px;">
+                        </div>
+                        <div class="color-variant white">
+                            <img src="/svg/food.svg" alt="white" style="width: 24px; height: 24px;">
+                        </div>
+                        <div class="color-variant amber">
+                            <img src="/svg/food.svg" alt="amber" style="width: 24px; height: 24px;">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Попкорн -->
+                <div class="icon-item">
+                    <img src="/svg/pop corn.svg" alt="Развлечения">
+                    <div class="name">Развлечения</div>
+                    <div class="file">pop corn.svg</div>
+                    <div class="color-variants">
+                        <div class="color-variant black">
+                            <img src="/svg/pop corn.svg" alt="black" style="width: 24px; height: 24px;">
+                        </div>
+                        <div class="color-variant white">
+                            <img src="/svg/pop corn.svg" alt="white" style="width: 24px; height: 24px;">
+                        </div>
+                        <div class="color-variant amber">
+                            <img src="/svg/pop corn.svg" alt="amber" style="width: 24px; height: 24px;">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Услуги -->
+                <div class="icon-item">
+                    <img src="/svg/tex usluga.svg" alt="Услуги">
+                    <div class="name">Услуги</div>
+                    <div class="file">tex usluga.svg</div>
+                    <div class="color-variants">
+                        <div class="color-variant black">
+                            <img src="/svg/tex usluga.svg" alt="black" style="width: 24px; height: 24px;">
+                        </div>
+                        <div class="color-variant white">
+                            <img src="/svg/tex usluga.svg" alt="white" style="width: 24px; height: 24px;">
+                        </div>
+                        <div class="color-variant amber">
+                            <img src="/svg/tex usluga.svg" alt="amber" style="width: 24px; height: 24px;">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Поиск -->
+                <div class="icon-item">
+                    <img src="/svg/poisk.svg" alt="Поиск">
+                    <div class="name">Поиск</div>
+                    <div class="file">poisk.svg</div>
+                    <div class="color-variants">
+                        <div class="color-variant black">
+                            <img src="/svg/poisk.svg" alt="black" style="width: 24px; height: 24px;">
+                        </div>
+                        <div class="color-variant white">
+                            <img src="/svg/poisk.svg" alt="white" style="width: 24px; height: 24px;">
+                        </div>
+                        <div class="color-variant amber">
+                            <img src="/svg/poisk.svg" alt="amber" style="width: 24px; height: 24px;">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Локация -->
+                <div class="icon-item">
+                    <img src="/svg/locatsa.svg" alt="Локация">
+                    <div class="name">Локация</div>
+                    <div class="file">locatsa.svg</div>
+                    <div class="color-variants">
+                        <div class="color-variant black">
+                            <img src="/svg/locatsa.svg" alt="black" style="width: 24px; height: 24px;">
+                        </div>
+                        <div class="color-variant white">
+                            <img src="/svg/locatsa.svg" alt="white" style="width: 24px; height: 24px;">
+                        </div>
+                        <div class="color-variant amber">
+                            <img src="/svg/locatsa.svg" alt="amber" style="width: 24px; height: 24px;">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Время -->
+                <div class="icon-item">
+                    <img src="/svg/soat.svg" alt="Время">
+                    <div class="name">Часы</div>
+                    <div class="file">soat.svg</div>
+                    <div class="color-variants">
+                        <div class="color-variant black">
+                            <img src="/svg/soat.svg" alt="black" style="width: 24px; height: 24px;">
+                        </div>
+                        <div class="color-variant white">
+                            <img src="/svg/soat.svg" alt="white" style="width: 24px; height: 24px;">
+                        </div>
+                        <div class="color-variant amber">
+                            <img src="/svg/soat.svg" alt="amber" style="width: 24px; height: 24px;">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Телефон -->
+                <div class="icon-item">
+                    <img src="/svg/phone.svg" alt="Телефон">
+                    <div class="name">Телефон</div>
+                    <div class="file">phone.svg</div>
+                    <div class="color-variants">
+                        <div class="color-variant black">
+                            <img src="/svg/phone.svg" alt="black" style="width: 24px; height: 24px;">
+                        </div>
+                        <div class="color-variant white">
+                            <img src="/svg/phone.svg" alt="white" style="width: 24px; height: 24px;">
+                        </div>
+                        <div class="color-variant amber">
+                            <img src="/svg/phone.svg" alt="amber" style="width: 24px; height: 24px;">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Меню -->
+                <div class="icon-item">
+                    <img src="/svg/menu.svg" alt="Меню">
+                    <div class="name">Меню</div>
+                    <div class="file">menu.svg</div>
+                    <div class="color-variants">
+                        <div class="color-variant black">
+                            <img src="/svg/menu.svg" alt="black" style="width: 24px; height: 24px;">
+                        </div>
+                        <div class="color-variant white">
+                            <img src="/svg/menu.svg" alt="white" style="width: 24px; height: 24px;">
+                        </div>
+                        <div class="color-variant amber">
+                            <img src="/svg/menu.svg" alt="amber" style="width: 24px; height: 24px;">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Веб -->
+                <div class="icon-item">
+                    <img src="/svg/web.svg" alt="Веб">
+                    <div class="name">Веб-сайт</div>
+                    <div class="file">web.svg</div>
+                    <div class="color-variants">
+                        <div class="color-variant black">
+                            <img src="/svg/web.svg" alt="black" style="width: 24px; height: 24px;">
+                        </div>
+                        <div class="color-variant white">
+                            <img src="/svg/web.svg" alt="white" style="width: 24px; height: 24px;">
+                        </div>
+                        <div class="color-variant amber">
+                            <img src="/svg/web.svg" alt="amber" style="width: 24px; height: 24px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="note" style="margin-top: 40px;">
+            <strong>📝 Как использовать:</strong><br>
+            • <strong>Черный</strong> - оригинальный цвет SVG<br>
+            • <strong>Белый</strong> - для использования на темном/цветном фоне (filter: brightness(0) invert(1))<br>
+            • <strong>Янтарный</strong> - для акцентов (filter: brightness(0) invert(1))
+        </div>
+    </div>
+</body>
+</html>
