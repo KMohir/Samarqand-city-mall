@@ -32,14 +32,14 @@ db.sqlite3-journal
 /staticfiles
 
 # Virtual Environment
-venv/
-env/
+/venv
+/env
 ENV/
 .venv
 
 # IDE
-.vscode/
-.idea/
+/.vscode
+/.idea
 *.swp
 *.swo
 *~
