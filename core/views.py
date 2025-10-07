@@ -3,6 +3,8 @@
 """
 from django.views.generic import TemplateView, ListView, DetailView
 from django.db.models import Q
+from django.http import HttpResponse
+from django.shortcuts import render
 from .models import Brand, Tenant, NewsArticle, Category
 
 
@@ -150,4 +152,11 @@ class SvgExamplesView(TemplateView):
     Страница с примерами использования SVG иконок.
     """
     template_name = 'svg_examples.html'
+
+
+class ReactHomePageView(TemplateView):
+    """
+    React версия главной страницы.
+    """
+    template_name = 'react_home.html'
 

@@ -7,8 +7,11 @@ from . import views
 app_name = 'core'
 
 urlpatterns = [
-    # Главная страница
+    # Главная страница (старая версия)
     path('', views.HomePageView.as_view(), name='home'),
+    
+    # React версия главной страницы
+    path('react/', views.ReactHomePageView.as_view(), name='react_home'),
     
     # Каталог по категориям
     path('catalog/<slug:category_slug>/', views.CatalogListView.as_view(), name='catalog'),

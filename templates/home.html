@@ -6,88 +6,110 @@
 
 {% block content %}
 <!-- Hero секция -->
-<section class="hero">
-    <div class="hero-content">
-        <h1 class="hero-title">SAMARKAND</h1>
-        <p class="hero-subtitle">CITY MALL</p>
-        <a href="{% url 'core:catalog' 'shops' %}" class="hero-button">Наши магазины</a>
-    </div>
-    <div class="hero-overlay"></div>
-    <!-- Декоративные круги -->
-    <div class="hero-circles">
-        <span class="circle circle-1"></span>
-        <span class="circle circle-2"></span>
-        <span class="circle circle-3"></span>
-        <span class="circle circle-4"></span>
-        <span class="circle circle-5"></span>
+<section class="w-full h-[45vh] md:h-[60vh] flex items-center justify-center p-4 relative overflow-hidden" style="background-color: #FF6600;">
+    <div class="text-center z-10">
+        <h2 class="text-6xl sm:text-8xl font-extrabold text-white tracking-widest uppercase" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+            CITY MALL
+        </h2>
+        <p class="text-xl sm:text-3xl font-medium text-white mt-2" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.5);">
+            SAMARKAND
+        </p>
     </div>
 </section>
 
 <!-- Секция категорий -->
-<section class="categories-section">
-    <div class="container">
-        <h2 class="section-title">Категории</h2>
-        <div class="categories-grid">
-            {% for category in all_categories %}
-            <a href="{% url 'core:catalog' category.slug %}" class="category-card">
-                <div class="category-icon-circle">
-                    {% if category.slug == 'cafes' %}
-                        {% svg_icon "utensils-bright" "category-svg-icon" "72" "72" %}
-                    {% elif category.slug == 'shops' %}
-                        {% svg_icon "shopping-bag-bright" "category-svg-icon" "72" "72" %}
-                    {% elif category.slug == 'entertainment' %}
-                        {% svg_icon "film-bright" "category-svg-icon" "72" "72" %}
-                    {% elif category.slug == 'services' %}
-                        {% svg_icon "hand-bright" "category-svg-icon" "72" "72" %}
-                    {% else %}
-                        {% svg_icon "shopping-bag-bright" "category-svg-icon" "72" "72" %}
-                    {% endif %}
+<section class="py-12 px-4 sm:px-6 lg:px-8" style="background-color: white; background-image: url('data:image/svg+xml,%3Csvg width=\'80\' height=\'80\' viewBox=\'0 0 80 80\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23000000\' fill-opacity=\'0.05\' fill-rule=\'evenodd\'%3E%3Cpath d=\'M0 0h40v40H0zM40 40h40v40H40z\' fill-opacity=\'0.05\'/%3E%3Cpath d=\'M10 10h20v20H10zM50 50h20v20H50z\'/%3E%3C/g%3E%3C/svg%3E'); background-size: 40px 40px;">
+    <div class="container mx-auto max-w-6xl">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8">
+            <a href="#" class="p-6 h-40 bg-[#D1B898] rounded-2xl flex flex-col items-center justify-center text-center shadow-md hover:shadow-xl transition-all duration-300">
+                <div class="p-4 rounded-xl bg-transparent">
+                    {% svg_icon "shopping-bag" "w-10 h-10 text-white mb-3" "40" "40" %}
                 </div>
-                <h3 class="category-title">{{ category.name }}</h3>
+                <span class="text-white font-medium text-sm sm:text-base">Магазины</span>
             </a>
-            {% endfor %}
+            <a href="#" class="p-6 h-40 bg-[#D1B898] rounded-2xl flex flex-col items-center justify-center text-center shadow-md hover:shadow-xl transition-all duration-300">
+                <div class="p-4 rounded-xl bg-transparent">
+                    {% svg_icon "utensils" "w-10 h-10 text-white mb-3" "40" "40" %}
+                </div>
+                <span class="text-white font-medium text-sm sm:text-base">Кафе и Рестораны</span>
+            </a>
+            <a href="#" class="p-6 h-40 bg-[#D1B898] rounded-2xl flex flex-col items-center justify-center text-center shadow-md hover:shadow-xl transition-all duration-300">
+                <div class="p-4 rounded-xl bg-transparent">
+                    {% svg_icon "film" "w-10 h-10 text-white mb-3" "40" "40" %}
+                </div>
+                <span class="text-white font-medium text-sm sm:text-base">Развлечения</span>
+            </a>
+            <a href="#" class="p-6 h-40 bg-[#D1B898] rounded-2xl flex flex-col items-center justify-center text-center shadow-md hover:shadow-xl transition-all duration-300">
+                <div class="p-4 rounded-xl bg-transparent">
+                    {% svg_icon "hand" "w-10 h-10 text-white mb-3" "40" "40" %}
+                </div>
+                <span class="text-white font-medium text-sm sm:text-base">Услуги</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Секция новостей -->
+<section class="py-16 px-4 sm:px-6 lg:px-8" style="background-color: white; background-image: url('data:image/svg+xml,%3Csvg width=\'80\' height=\'80\' viewBox=\'0 0 80 80\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23000000\' fill-opacity=\'0.05\' fill-rule=\'evenodd\'%3E%3Cpath d=\'M0 0h40v40H0zM40 40h40v40H40z\' fill-opacity=\'0.05\'/%3E%3Cpath d=\'M10 10h20v20H10zM50 50h20v20H50z\'/%3E%3C/g%3E%3C/svg%3E'); background-size: 40px 40px;">
+    <h2 class="text-4xl font-extrabold text-center mb-10 text-gray-800">Новости</h2>
+    
+    <div class="container mx-auto max-w-6xl">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div class="overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer bg-white">
+                <img src="https://placehold.co/300x400/D1B898/333333?text=Покупки" alt="Женщина с покупками" class="w-full h-96 object-cover object-top p-4" style="border-radius: 12px;">
+            </div>
+            <div class="overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer bg-white">
+                <img src="https://placehold.co/300x400/D1B898/333333?text=Мода" alt="Мужчина в деловом стиле" class="w-full h-96 object-cover object-top p-4" style="border-radius: 12px;">
+            </div>
+            <div class="overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer bg-white">
+                <img src="https://placehold.co/300x400/D1B898/333333?text=Стиль" alt="Женщина в юбке" class="w-full h-96 object-cover object-top p-4" style="border-radius: 12px;">
+            </div>
         </div>
     </div>
 </section>
 
 <!-- Секция брендов -->
-<section class="brands-section">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">Наши бренды</h2>
-            <a href="{% url 'core:catalog' 'shops' %}" class="section-link">Смотреть все</a>
-        </div>
-        <div class="brands-grid">
-            {% for brand in brand_list %}
-            <div class="brand-item">
-                <div class="brand-logo">
-                    {% if brand.logo %}
-                    <img src="{{ brand.logo.url }}" alt="{{ brand.name }}">
-                    {% else %}
-                    <span class="brand-name">{{ brand.name }}</span>
-                    {% endif %}
-                </div>
+<section class="py-12 px-4 sm:px-6 lg:px-8" style="background-color: white; background-image: url('data:image/svg+xml,%3Csvg width=\'80\' height=\'80\' viewBox=\'0 0 80 80\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23000000\' fill-opacity=\'0.05\' fill-rule=\'evenodd\'%3E%3Cpath d=\'M0 0h40v40H0zM40 40h40v40H40z\' fill-opacity=\'0.05\'/%3E%3Cpath d=\'M10 10h20v20H10zM50 50h20v20H50z\'/%3E%3C/g%3E%3C/svg%3E'); background-size: 40px 40px;">
+    <h2 class="text-4xl font-extrabold text-center mb-10 text-gray-800">Бренды</h2>
+    
+    <div class="container mx-auto max-w-6xl">
+        <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4">
+            <div class="w-full h-24 sm:h-28 rounded-md flex items-center justify-center border border-gray-200 shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer bg-white p-2">
+                <span class="text-xl font-bold text-gray-800">ZARA</span>
             </div>
-            {% empty %}
-            <p class="no-items">Бренды скоро появятся</p>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-
-
-<!-- Секция новостей -->
-<section class="news-preview-section">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">Новости и акции</h2>
-            <a href="{% url 'core:news_list' %}" class="section-link">Все новости</a>
-        </div>
-        <div class="news-preview-grid">
-            <!-- Здесь можно добавить последние новости -->
-            <div class="news-preview-placeholder">
-                <p>Следите за нашими новостями и специальными предложениями</p>
+            <div class="w-full h-24 sm:h-28 rounded-md flex items-center justify-center border border-gray-200 shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer bg-white p-2">
+                <img src="{% static 'svg/lacoste-logo.svg' %}" alt="LACOSTE" class="w-full h-full object-contain">
             </div>
+            <div class="w-full h-24 sm:h-28 rounded-md flex items-center justify-center border border-gray-200 shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer bg-white p-2">
+                <span class="text-xl font-bold text-gray-800">BOSS</span>
+            </div>
+            <div class="w-full h-24 sm:h-28 rounded-md flex items-center justify-center border border-gray-200 shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer bg-white p-2">
+                <span class="text-xl font-bold text-gray-800">DIESEL</span>
+            </div>
+            <div class="w-full h-24 sm:h-28 rounded-md flex items-center justify-center border border-gray-200 shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer bg-white p-2">
+                <span class="text-xl font-bold text-gray-800">Massimo Dutti</span>
+            </div>
+            <div class="w-full h-24 sm:h-28 rounded-md flex items-center justify-center border border-gray-200 shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer bg-white p-2">
+                <span class="text-xl font-bold text-gray-800">ck</span>
+            </div>
+            <div class="w-full h-24 sm:h-28 rounded-md flex items-center justify-center border border-gray-200 shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer bg-white p-2">
+                <img src="{% static 'svg/nike-logo.svg' %}" alt="Nike" class="w-full h-full object-contain">
+            </div>
+            <div class="w-full h-24 sm:h-28 rounded-md flex items-center justify-center border border-gray-200 shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer bg-white p-2">
+                <img src="{% static 'svg/adidas-logo.svg' %}" alt="Adidas" class="w-full h-full object-contain">
+            </div>
+            <div class="w-full h-24 sm:h-28 rounded-md flex items-center justify-center border border-gray-200 shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer bg-white p-2">
+                <img src="{% static 'svg/starbucks-logo.svg' %}" alt="Starbucks" class="w-full h-full object-contain">
+            </div>
+            <div class="w-full h-24 sm:h-28 rounded-md flex items-center justify-center border border-gray-200 shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer bg-white p-2">
+                <span class="text-xl font-bold text-gray-800">COSTA</span>
+            </div>
+        </div>
+
+        <div class="text-center mt-12">
+            <button class="bg-gray-800 text-white px-8 py-3 rounded-full font-semibold hover:bg-amber-600 transition-colors shadow-lg">
+                Посмотреть все
+            </button>
         </div>
     </div>
 </section>

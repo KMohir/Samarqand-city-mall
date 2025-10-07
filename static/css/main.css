@@ -9,14 +9,36 @@
     --color-text-primary: #000000;
     --color-text-secondary: #333333;
     --color-text-muted: #666666;
-    --color-accent: #FF8C00;
-    --color-accent-hover: #FF7F00;
-    --color-accent-light: #FFF8E1;
+    /* Бежевый акцент из макета */
+    --color-accent: #D1B898;
+    --color-accent-hover: #c5a987;
+    --color-accent-light: #efe7d9;
     --color-border: #E0E0E0;
-    --color-orange-hero: #FF8C00;
-    --color-beige: #F5F5DC;
+    /* Оранжевый hero из макета */
+    --color-orange-hero: #FF6600;
+    --color-beige: #D1B898;
     --font-primary: 'Inter', 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --transition: all 0.3s ease;
+}
+
+/* Убираем импорт Tailwind, так как он подключён через CDN в base.html */
+
+/* Дополнительные стили для корректного отображения */
+@media (min-width: 768px) {
+    #mobileMenu {
+        display: none !important;
+    }
+}
+
+/* Скрываем мобильное меню по умолчанию */
+#mobileMenu {
+    max-height: 0px !important;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+#mobileMenu.open {
+    max-height: 400px !important;
 }
 
 * {
@@ -33,6 +55,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    font-sans: antialiased;
 }
 
 main {
@@ -59,14 +82,7 @@ a:hover {
    HEADER СТИЛИ
    ========================================== */
 
-.header {
-    background-color: #FFFFFF;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    border-bottom: 1px solid var(--color-border);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
+/* Убираем старые стили header, используем Tailwind */
 
 /* Верхняя информационная панель */
 .header-top {
@@ -213,12 +229,7 @@ a:hover {
    FOOTER СТИЛИ
    ========================================== */
 
-.footer {
-    background-color: var(--color-accent-light);
-    border-top: 3px solid var(--color-accent);
-    padding: 60px 0 20px;
-    margin-top: 80px;
-}
+/* Убираем старые стили footer, используем Tailwind */
 
 .footer-content {
     display: grid;
@@ -301,15 +312,7 @@ a:hover {
    HERO СЕКЦИЯ
    ========================================== */
 
-.hero {
-    position: relative;
-    height: 500px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, var(--color-orange-hero) 0%, #FF6B35 100%);
-    overflow: hidden;
-}
+/* Убираем старые стили hero, используем Tailwind */
 
 /* Декоративные листья - левый нижний угол */
 .hero::before {
@@ -471,8 +474,8 @@ a:hover {
 }
 
 .hero-title {
-    font-size: 72px;
-    font-weight: 700;
+    font-size: 96px;
+    font-weight: 800;
     letter-spacing: 4px;
     margin-bottom: 10px;
     color: #FFFFFF;
@@ -560,10 +563,7 @@ a:hover {
    КАТЕГОРИИ
    ========================================== */
 
-.categories-section {
-    background: linear-gradient(135deg, #FAF4E8 0%, #F5EFE0 100%);
-    padding: 80px 0;
-}
+/* Убираем старые стили категорий, используем Tailwind */
 
 .categories-grid {
     display: grid;
@@ -574,25 +574,24 @@ a:hover {
 }
 
 .category-card {
-    background: linear-gradient(135deg, #2C3E50 0%, #34495E 100%);
-    padding: 50px 30px;
+    background: var(--color-beige);
+    padding: 40px 30px;
     border-radius: 16px;
     text-align: center;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
     cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    min-height: 200px;
+    min-height: 180px;
 }
 
 .category-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(135deg, #34495E 0%, #2C3E50 100%);
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
 }
 
 .category-icon-circle {
@@ -639,7 +638,7 @@ a:hover {
     font-weight: 600;
     color: #FFFFFF;
     margin: 0;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
 
 .category-card:hover .category-title {
@@ -650,19 +649,7 @@ a:hover {
    БРЕНДЫ
    ========================================== */
 
-.brands-section {
-    position: relative;
-    background-color: var(--color-bg-secondary);
-    background-image: 
-        repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 10px,
-            rgba(255, 255, 255, 0.1) 10px,
-            rgba(255, 255, 255, 0.1) 20px
-        );
-    overflow: hidden;
-}
+/* Убираем старые стили брендов, используем Tailwind */
 
 /* Декоративные листья в углах секции брендов */
 .brands-section::before {

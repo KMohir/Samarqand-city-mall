@@ -1,67 +1,106 @@
 {% load static %}
 {% load svg_tags %}
-<header class="header">
-    <!-- Верхняя информационная панель -->
-    <div class="header-top">
-        <div class="container">
-            <div class="header-top-content">
-                <div class="header-top-left">
-                    <span class="header-info">Сегодня до 00:00</span>
+<header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-3">
+        <!-- Верхняя строка - Инфо и Поиск -->
+        <div class="flex justify-between items-center border-b pb-3 mb-3">
+            <div class="flex items-center space-x-4 text-sm text-gray-600">
+                <div class="flex items-center space-x-1">
+                    {% svg_icon "clock" "w-4 h-4 text-amber-600" "16" "16" %}
+                    <span class="text-gray-700">Сегодня до 00:00</span>
                 </div>
-                <div class="header-top-right">
-                    <a href="#" class="header-link">Контакты</a>
-                    <a href="#" class="header-link">Как добраться</a>
-                    <a href="{% url 'core:search' %}" class="header-link">
-                        {% svg_icon "poisk" "header-icon" "16" "16" %}
-                        Поиск
-                    </a>
-                </div>
+                <a href="#" class="flex items-center space-x-1 text-gray-700 hover:text-amber-600 transition-colors">
+                    {% svg_icon "map-pin" "w-4 h-4 text-amber-600" "16" "16" %}
+                    <span>Контакт & как добраться</span>
+                </a>
             </div>
+
+            <!-- Поиск и кнопки меню/языка -->
+            <div class="hidden md:flex items-center space-x-3">
+                <!-- Кнопка RUS для смены языка -->
+                <button class="text-gray-700 bg-gray-100 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors">RUS</button>
+
+                <div class="flex items-center border border-gray-300 rounded-full p-1 w-80 focus-within:border-amber-500 transition-all">
+                    <input
+                        type="text"
+                        placeholder="Поиск" 
+                        class="flex-grow bg-transparent outline-none px-3 text-sm"
+                    />
+                    <button class="text-gray-700 p-2 rounded-full hover:bg-gray-100 transition-colors">
+                        {% svg_icon "search" "w-4 h-4" "18" "18" %}
+                    </button>
+                </div>
+                
+                <button class="text-white bg-gray-800 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-700 transition-colors">Меню</button>
+            </div>
+
+            <!-- Мобильная кнопка меню -->
+            <button class="md:hidden text-gray-700 focus:outline-none" id="mobileMenuToggle">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Заголовок и Основное меню -->
+        <div class="flex justify-between items-center">
+            <!-- SVG Логотип + SAMARKAND CITY MALL -->
+            <div class="flex items-center space-x-3">
+                {% svg_inline "City Mall logo" "w-6 h-10" %}
+                <h1 class="text-xl font-extrabold tracking-wider text-gray-800">
+                    <span class="text-amber-600">CITY MALL</span>
+                </h1>
+            </div>
+            
+            <nav class="hidden md:block">
+                <ul class="flex space-x-6 lg:space-x-8">
+                    {% for category in all_categories %}
+                    <li>
+                        <a href="{% url 'core:catalog' category.slug %}" class="text-gray-700 font-medium hover:text-amber-600 transition-colors text-sm uppercase tracking-wide">
+                            {{ category.name }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                    <li>
+                        <a href="{% url 'core:news_list' %}" class="text-gray-700 font-medium hover:text-amber-600 transition-colors text-sm uppercase tracking-wide">Новости</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'core:catalog' 'shops' %}" class="text-gray-700 font-medium hover:text-amber-600 transition-colors text-sm uppercase tracking-wide">Бренды</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
-    
-    <!-- Главная навигационная панель -->
-    <div class="header-main">
-        <div class="container">
-            <div class="header-main-content">
-                <a href="{% url 'core:home' %}" class="logo">
-                    {% svg_inline "City Mall logo" "logo-svg" %}
-                </a>
-                
-                <nav class="main-nav">
-                    <ul class="nav-list">
-                        {% for category in all_categories %}
-                        <li class="nav-item">
-                            <a href="{% url 'core:catalog' category.slug %}" class="nav-link">{{ category.name }}</a>
-                        </li>
-                        {% endfor %}
-                        <li class="nav-item">
-                            <a href="{% url 'core:news_list' %}" class="nav-link">Новости</a>
-                        </li>
-                    </ul>
-                </nav>
-                
-                <!-- Мобильное меню -->
-                <button class="mobile-menu-toggle" id="mobileMenuToggle">
-                    {% svg_icon "menu" "menu-icon" "24" "24" %}
+
+    <!-- Мобильное меню (Выезжающее) -->
+    <nav class="md:hidden overflow-hidden transition-all duration-300" id="mobileMenu" style="max-height: 0px;">
+        <ul class="bg-gray-50 border-t border-gray-200 p-4 space-y-2">
+            <!-- Поиск в мобильном меню -->
+            <div class="flex items-center border border-gray-300 rounded-full p-1 focus-within:border-amber-500 transition-all">
+                <input
+                    type="text"
+                    placeholder="Поиск..."
+                    class="flex-grow bg-transparent outline-none px-3 text-sm"
+                />
+                <button class="bg-amber-600 text-white p-2 rounded-full hover:bg-amber-700 transition-colors">
+                    {% svg_icon "search" "w-4 h-4" "18" "18" %}
                 </button>
             </div>
-        </div>
-    </div>
+            {% for category in all_categories %}
+            <li>
+                <a href="{% url 'core:catalog' category.slug %}" class="flex items-center space-x-2 p-2 text-gray-700 font-medium hover:bg-amber-50 transition-colors rounded-lg">
+                    {% svg_icon "home" "w-4 h-4 text-amber-600" "18" "18" %}
+                    <span>{{ category.name }}</span>
+                </a>
+            </li>
+            {% endfor %}
+            <li>
+                <a href="{% url 'core:news_list' %}" class="flex items-center space-x-2 p-2 text-gray-700 font-medium hover:bg-amber-50 transition-colors rounded-lg">
+                    {% svg_icon "briefcase" "w-4 h-4 text-amber-600" "18" "18" %}
+                    <span>Новости</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 </header>
-
-<!-- Мобильное меню -->
-<div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-menu-content">
-        <nav class="mobile-nav">
-            <ul>
-                {% for category in all_categories %}
-                <li><a href="{% url 'core:catalog' category.slug %}">{{ category.name }}</a></li>
-                {% endfor %}
-                <li><a href="{% url 'core:news_list' %}">Новости</a></li>
-                <li><a href="{% url 'core:search' %}">Поиск</a></li>
-            </ul>
-        </nav>
-    </div>
-</div>
 

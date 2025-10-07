@@ -1,0 +1,84 @@
+/* Базовые переменные макета */
+:root {
+  --mall-beige: #D1B898;
+  --mall-orange: #FF6600;
+  --text-dark: #222222;
+}
+
+/* Глобально выравниваем шрифт */
+html, body {
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* Шапка */
+.header-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: #4b5563;
+}
+
+.btn-beige {
+  background: var(--mall-beige);
+  color: #1f2937;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  font-weight: 600;
+}
+
+.btn-beige--dark {
+  background: var(--mall-beige);
+  color: #111827;
+}
+
+/* Поисковая строка */
+.search-input {
+  border: 1px solid #d1d5db;
+  border-radius: 9999px;
+  padding: 4px;
+}
+
+/* Hero */
+.hero {
+  min-height: 45vh;
+  background-color: var(--mall-orange);
+  background-size: cover;
+  background-position: center;
+}
+
+/* Плитки категорий */
+.category-tile {
+  background: var(--mall-beige);
+  border-radius: 16px;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Паттерн фона секций */
+.pattern-bg {
+  background-color: #ffffff;
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M0 0h40v40H0zM40 40h40v40H40z' fill-opacity='0.05'/%3E%3Cpath d='M10 10h20v20H10zM50 50h20v20H50z'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 40px 40px;
+}
+
+/* Бренды */
+.brand-card {
+  height: 112px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+}
+
+/* Футер */
+.footer {
+  background: var(--mall-beige);
+  color: #4A4A4A;
+}
+
+
