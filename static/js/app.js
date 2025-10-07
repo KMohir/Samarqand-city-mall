@@ -8,6 +8,7 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const desktopMenuToggle = document.getElementById('desktopMenuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
     
     if (mobileMenuToggle && mobileMenu) {
@@ -21,6 +22,13 @@ document.addEventListener('DOMContentLoaded', function() {
             link.addEventListener('click', function() {
                 mobileMenu.classList.remove('open');
             });
+        });
+    }
+
+    // Десктопная кнопка "Меню" открывает то же меню
+    if (desktopMenuToggle && mobileMenu) {
+        desktopMenuToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('open');
         });
     }
 });
