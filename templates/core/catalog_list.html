@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}{{ current_category.name }} - Samarkand City Mall{% endblock %}
+{% block title %}{% if current_category %}{{ current_category.name }}{% else %}Все арендаторы{% endif %} - Samarkand City Mall{% endblock %}
 
 {% block content %}
 <section class="catalog-section">
     <div class="container">
         <!-- Заголовок каталога -->
         <div class="catalog-header">
-            <h1 class="page-title">{{ current_category.name }}</h1>
+            <h1 class="page-title">{% if current_category %}{{ current_category.name }}{% else %}Все арендаторы{% endif %}</h1>
             <div class="catalog-controls">
                 <button class="view-toggle" id="viewToggle" data-view="grid">
                     <span class="toggle-icon grid-icon active">⊞</span>
@@ -19,6 +19,7 @@
         
         <div class="catalog-content">
             <!-- Панель фильтров -->
+            {% if current_category %}
             <aside class="filters-sidebar">
                 <div class="filters-container">
                     <h3 class="filters-title">Фильтры</h3>
@@ -74,15 +75,25 @@
                             </label>
                         </div>
                         
+                        {% if current_category %}
                         <button type="button" class="filter-reset" onclick="window.location.href='{% url 'core:catalog' current_category.slug %}'">
                             Сбросить фильтры
                         </button>
+                        {% endif %}
                     </form>
                 </div>
             </aside>
+            {% endif %}
             
             <!-- Список арендаторов -->
             <div class="catalog-main">
+                {% if not current_category %}
+                <div class="error-message">
+                    <h2>Категория не найдена</h2>
+                    <p>Запрашиваемая категория не существует.</p>
+                    <a href="{% url 'core:home' %}" class="btn btn-primary">Вернуться на главную</a>
+                </div>
+                {% else %}
                 <div class="tenants-grid" id="tenantsContainer">
                     {% for tenant in tenants %}
                     <a href="{% url 'core:tenant_detail' tenant.slug %}" class="tenant-card">
@@ -110,9 +121,10 @@
                     </div>
                     {% endfor %}
                 </div>
+                {% endif %}
                 
                 <!-- Пагинация -->
-                {% if is_paginated %}
+                {% if current_category and is_paginated %}
                 <div class="pagination">
                     {% if page_obj.has_previous %}
                     <a href="?page={{ page_obj.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}" class="pagination-link">Назад</a>

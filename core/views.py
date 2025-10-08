@@ -3,9 +3,9 @@
 """
 from django.views.generic import TemplateView, ListView, DetailView
 from django.db.models import Q
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
-from .models import Brand, Tenant, NewsArticle, Category
+from .models import Brand, Tenant, NewsArticle, Category, HeroImage
 
 
 class HomePageView(TemplateView):
@@ -18,6 +18,13 @@ class HomePageView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['brand_list'] = Brand.objects.all()
+        
+        # Получаем активное изображение для Hero секции
+        try:
+            context['hero_image'] = HeroImage.objects.filter(is_active=True).first()
+        except HeroImage.DoesNotExist:
+            context['hero_image'] = None
+        
         return context
 
 
@@ -40,7 +47,13 @@ class CatalogListView(ListView):
         # Фильтр по категории из URL
         category_slug = self.kwargs.get('category_slug')
         if category_slug:
-            queryset = queryset.filter(category__slug=category_slug)
+            try:
+                # Проверяем, существует ли категория
+                category = Category.objects.get(slug=category_slug)
+                queryset = queryset.filter(category=category)
+            except Category.DoesNotExist:
+                # Если категория не найдена, показываем пустой queryset
+                queryset = Tenant.objects.none()
         
         # Динамические фильтры из GET параметров
         if self.request.GET.get('has_promotions') == 'true':
@@ -76,7 +89,10 @@ class CatalogListView(ListView):
             try:
                 context['current_category'] = Category.objects.get(slug=category_slug)
             except Category.DoesNotExist:
+                # Если категория не найдена, показываем все арендаторы
                 context['current_category'] = None
+        else:
+            context['current_category'] = None
         
         # Передаем активные фильтры для отображения в UI
         context['active_filters'] = {
@@ -159,4 +175,25 @@ class ReactHomePageView(TemplateView):
     React версия главной страницы.
     """
     template_name = 'react_home.html'
+
+
+def hero_image_api(request):
+    """
+    API endpoint для получения активного изображения Hero секции.
+    Возвращает JSON с информацией об активном изображении.
+    """
+    try:
+        hero_image = HeroImage.objects.filter(is_active=True).first()
+        if hero_image:
+            return JsonResponse({
+                'id': hero_image.id,
+                'title': hero_image.title,
+                'url': hero_image.image.url,
+                'description': hero_image.description,
+                'created_at': hero_image.created_at.isoformat(),
+            })
+        else:
+            return JsonResponse({'error': 'No active hero image found'}, status=404)
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
 

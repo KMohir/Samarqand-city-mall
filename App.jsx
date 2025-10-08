@@ -169,13 +169,34 @@ const Header = () => {
 
 const HeroSection = () => {
     const TEXTURE_URL = "/images/orange_wood.png";
+    // В реальном приложении это изображение будет загружаться через API
+    const [heroImage, setHeroImage] = React.useState(null);
+
+    React.useEffect(() => {
+        // Здесь будет API запрос для получения активного изображения
+        // fetch('/api/hero-image/')
+        //   .then(response => response.json())
+        //   .then(data => setHeroImage(data))
+        //   .catch(error => console.error('Error fetching hero image:', error));
+    }, []);
 
     return (
         <div 
             className="w-full hero flex items-center justify-center p-4 relative overflow-hidden"
-            style={{ backgroundImage: `url(${TEXTURE_URL})` }}
         >
-            <div className="text-center z-10">
+            {heroImage ? (
+                <div className="absolute inset-0 z-0">
+                    <img 
+                        src={heroImage.url} 
+                        alt={heroImage.title || 'Hero Image'} 
+                        className="w-full h-full object-cover object-center"
+                    />
+                </div>
+            ) : (
+                <div className="absolute inset-0 z-0" style={{ backgroundColor: '#FF6600' }}></div>
+            )}
+            
+            <div className="text-center z-10 relative">
                 <h2 className="text-6xl sm:text-8xl font-extrabold text-white tracking-widest uppercase" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
                     CITY MALL
                 </h2>

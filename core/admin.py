@@ -2,7 +2,7 @@
 Настройка Django Admin для приложения Samarkand City Mall.
 """
 from django.contrib import admin
-from .models import Category, Brand, Tenant, NewsArticle, Service, Vacancy
+from .models import Category, Brand, Tenant, NewsArticle, Service, Vacancy, HeroImage
 
 
 @admin.register(Category)
@@ -163,6 +163,35 @@ class VacancyAdmin(admin.ModelAdmin):
             'fields': ('is_active',)
         }),
     )
+
+
+@admin.register(HeroImage)
+class HeroImageAdmin(admin.ModelAdmin):
+    """
+    Административная панель для модели HeroImage.
+    Позволяет администратору управлять изображениями главной страницы.
+    """
+    list_display = ('image_preview', 'is_active', 'created_at')
+    list_filter = ('is_active', 'created_at')
+    search_fields = ()
+    date_hierarchy = 'created_at'
+    
+    fieldsets = (
+        ('Изображение', {
+            'fields': ('image',)
+        }),
+        ('Статус', {
+            'fields': ('is_active',)
+        }),
+    )
+    
+    def image_preview(self, obj):
+        if obj.image:
+            return f'<img src="{obj.image.url}" style="max-height: 100px; max-width: 200px; object-fit: contain; border: 1px solid #ddd; border-radius: 4px;">'
+        return '-'
+    
+    image_preview.short_description = 'Предварительный просмотр'
+    image_preview.allow_tags = True
 
 
 # Настройка заголовков админ-панели

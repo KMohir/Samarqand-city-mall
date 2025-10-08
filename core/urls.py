@@ -28,5 +28,8 @@ urlpatterns = [
     
     # Примеры SVG иконок
     path('svg-examples/', views.SvgExamplesView.as_view(), name='svg_examples'),
+    
+    # API endpoints
+    path('api/hero-image/', views.hero_image_api, name='hero_image_api'),
 ]
 

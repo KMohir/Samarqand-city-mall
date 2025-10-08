@@ -28,7 +28,7 @@ class Command(BaseCommand):
         self.stdout.write('Создание категорий...')
         categories_data = [
             {'name': 'Магазины', 'slug': 'shops'},
-            {'name': 'Кафе и рестораны', 'slug': 'cafes-restaurants'},
+            {'name': 'Кафе и Рестораны', 'slug': 'cafes'},
             {'name': 'Развлечения', 'slug': 'entertainment'},
             {'name': 'Услуги', 'slug': 'services'},
         ]
@@ -230,7 +230,7 @@ class Command(BaseCommand):
         for cafe_data in cafes_data:
             tenant, created = Tenant.objects.get_or_create(
                 name=cafe_data['name'],
-                category=categories['cafes-restaurants'],
+                category=categories['cafes'],
                 defaults={
                     'slug': slugify(cafe_data['name']),
                     'floor': cafe_data['floor'],
