@@ -197,3 +197,26 @@ def hero_image_api(request):
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
 
+
+class ContactView(TemplateView):
+    """
+    Страница контактов и как добраться.
+    """
+    template_name = 'core/contact.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Добавляем контактную информацию
+        context['contact_info'] = {
+            'address': 'г. Самарканд, ул. Амира Темура, 40М 838',
+            'phone': '+998 98-000-22-00',
+            'email': 'info@samarkandcitymall.uz',
+            'working_hours': 'Ежедневно: 10:00 - 22:00',
+            'phone_hours': 'Время звонков: 12:00 - 19:00',
+            'coordinates': {
+                'lat': 39.6547,
+                'lng': 66.9597
+            }
+        }
+        return context
+

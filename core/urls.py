@@ -31,5 +31,8 @@ urlpatterns = [
     
     # API endpoints
     path('api/hero-image/', views.hero_image_api, name='hero_image_api'),
+    
+    # Контакты
+    path('contact/', views.ContactView.as_view(), name='contact'),
 ]
 

@@ -45,19 +45,24 @@
         <!-- Заголовок и Основное меню -->
         <div class="flex justify-between items-center">
             <!-- SVG Логотип + SAMARKAND CITY MALL -->
-            <div class="flex items-center space-x-3">
+            <a href="{% url 'core:home' %}" class="flex items-center space-x-3 hover:opacity-80 transition-opacity">
                 {% svg_inline "City Mall logo" "w-6 h-10" %}
-            </div>
+            </a>
             
             <nav class="hidden md:block">
                 <ul class="flex space-x-6 lg:space-x-8">
-                    {% for category in all_categories %}
                     <li>
-                        <a href="{% url 'core:catalog' category.slug %}" class="text-gray-700 font-medium hover:text-amber-600 transition-colors text-sm uppercase tracking-wide">
-                            {{ category.name }}
-                        </a>
+                        <a href="{% url 'core:catalog' 'shops' %}" class="text-gray-700 font-medium hover:text-amber-600 transition-colors text-sm uppercase tracking-wide">Магазины</a>
                     </li>
-                    {% endfor %}
+                    <li>
+                        <a href="{% url 'core:catalog' 'cafes' %}" class="text-gray-700 font-medium hover:text-amber-600 transition-colors text-sm uppercase tracking-wide">Кафе и Рестораны</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'core:catalog' 'entertainment' %}" class="text-gray-700 font-medium hover:text-amber-600 transition-colors text-sm uppercase tracking-wide">Развлечения</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'core:catalog' 'services' %}" class="text-gray-700 font-medium hover:text-amber-600 transition-colors text-sm uppercase tracking-wide">Услуги</a>
+                    </li>
                     <li>
                         <a href="{% url 'core:news_list' %}" class="text-gray-700 font-medium hover:text-amber-600 transition-colors text-sm uppercase tracking-wide">Новости</a>
                     </li>
@@ -83,14 +88,30 @@
                     {% svg_icon "search" "w-4 h-4" "18" "18" %}
                 </button>
             </div>
-            {% for category in all_categories %}
             <li>
-                <a href="{% url 'core:catalog' category.slug %}" class="flex items-center space-x-2 p-2 text-gray-700 font-medium hover:bg-amber-50 transition-colors rounded-lg">
-                    {% svg_icon "home" "w-4 h-4 text-amber-600" "18" "18" %}
-                    <span>{{ category.name }}</span>
+                <a href="{% url 'core:catalog' 'shops' %}" class="flex items-center space-x-2 p-2 text-gray-700 font-medium hover:bg-amber-50 transition-colors rounded-lg">
+                    {% svg_icon "shopping-bag" "w-4 h-4 text-amber-600" "18" "18" %}
+                    <span>Магазины</span>
                 </a>
             </li>
-            {% endfor %}
+            <li>
+                <a href="{% url 'core:catalog' 'cafes' %}" class="flex items-center space-x-2 p-2 text-gray-700 font-medium hover:bg-amber-50 transition-colors rounded-lg">
+                    {% svg_icon "utensils" "w-4 h-4 text-amber-600" "18" "18" %}
+                    <span>Кафе и Рестораны</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'core:catalog' 'entertainment' %}" class="flex items-center space-x-2 p-2 text-gray-700 font-medium hover:bg-amber-50 transition-colors rounded-lg">
+                    {% svg_icon "popcorn" "w-4 h-4 text-amber-600" "18" "18" %}
+                    <span>Развлечения</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'core:catalog' 'services' %}" class="flex items-center space-x-2 p-2 text-gray-700 font-medium hover:bg-amber-50 transition-colors rounded-lg">
+                    {% svg_icon "services" "w-4 h-4 text-amber-600" "18" "18" %}
+                    <span>Услуги</span>
+                </a>
+            </li>
             <li>
                 <a href="{% url 'core:news_list' %}" class="flex items-center space-x-2 p-2 text-gray-700 font-medium hover:bg-amber-50 transition-colors rounded-lg">
                     {% svg_icon "briefcase" "w-4 h-4 text-amber-600" "18" "18" %}

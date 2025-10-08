@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="297.2mm" height="210.2mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 7432.09 5256.48"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str0 {stroke:#EBECEC;stroke-width:5;stroke-miterlimit:22.9256}
+    .fil1 {fill:none}
+    .fil0 {fill:#FEFEFE}
+   ]]>
+  </style>
+   <clipPath id="id0">
+    <path d="M2.5 2.5l7427.09 0 0 5251.48 -7427.09 0 0 -5251.48z"/>
+   </clipPath>
+ </defs>
+ <g id="Слой_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <polygon class="fil0" points="2.5,2.5 7429.59,2.5 7429.59,5253.98 2.5,5253.98 "/>
+  <g style="clip-path:url(#id0)">
+   <g id="_2739047142672">
+    <image x="-603.03" y="-230.07" width="9097.87" height="4878.17" xlink:href="FON_Images\FON_ImgID1.png"/>
+   </g>
+  </g>
+  <polygon class="fil1 str0" points="2.5,2.5 7429.59,2.5 7429.59,5253.98 2.5,5253.98 "/>
+ </g>
+</svg>

@@ -1,13 +1,49 @@
 import React, { useState } from 'react';
+import ReactDOM from 'react-dom/client';
+
+// SVG иконки как компоненты
+const ShoppingBagIcon = ({ className = "w-6 h-6" }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M7 4V2C7 1.45 7.45 1 8 1H16C16.55 1 17 1.45 17 2V4H20C20.55 4 21 4.45 21 5S20.55 6 20 6H19V19C19 20.1 18.1 21 17 21H7C5.9 21 5 20.1 5 19V6H4C3.45 6 3 5.55 3 5S3.45 4 4 4H7ZM9 3V4H15V3H9ZM7 6V19H17V6H7Z"/>
+    <path d="M9 8V17H11V8H9ZM13 8V17H15V8H13Z"/>
+  </svg>
+);
+
+const UtensilsIcon = ({ className = "w-6 h-6" }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M3 2V22H5V14H7V22H9V2H7V12H5V2H3Z"/>
+    <path d="M11 2V8C11 9.1 11.9 10 13 10H15V22H17V2H15V8H13V2H11Z"/>
+    <path d="M19 2V8C19 9.1 19.9 10 21 10V12C19.9 12 19 12.9 19 14V22H21V2H19Z"/>
+  </svg>
+);
+
+const PopcornIcon = ({ className = "w-6 h-6" }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2Z"/>
+    <path d="M8 8C8.55 8 9 8.45 9 9V15C9 15.55 8.55 16 8 16C7.45 16 7 15.55 7 15V9C7 8.45 7.45 8 8 8Z"/>
+    <path d="M16 8C16.55 8 17 8.45 17 9V15C17 15.55 16.55 16 16 16C15.45 16 15 15.55 15 15V9C15 8.45 15.45 8 16 8Z"/>
+    <path d="M12 8C12.55 8 13 8.45 13 9V15C13 15.55 12.55 16 12 16C11.45 16 11 15.55 11 15V9C11 8.45 11.45 8 12 8Z"/>
+    <path d="M6 18H18C18.55 18 19 18.45 19 19V21C19 21.55 18.55 22 18 22H6C5.45 22 5 21.55 5 21V19C5 18.45 5.45 18 6 18Z"/>
+  </svg>
+);
+
+const ServicesIcon = ({ className = "w-6 h-6" }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2Z"/>
+    <path d="M12 8C13.1 8 14 8.9 14 10C14 11.1 13.1 12 12 12C10.9 12 10 11.1 10 10C10 8.9 10.9 8 12 8Z"/>
+    <path d="M12 14C13.1 14 14 14.9 14 16C14 17.1 13.1 18 12 18C10.9 18 10 17.1 10 16C10 14.9 10.9 14 12 14Z"/>
+    <path d="M8 10C8.55 10 9 10.45 9 11V13C9 13.55 8.55 14 8 14C7.45 14 7 13.55 7 13V11C7 10.45 7.45 10 8 10Z"/>
+    <path d="M16 10C16.55 10 17 10.45 17 11V13C17 13.55 16.55 14 16 14C15.45 14 15 13.55 15 13V11C15 10.45 15.45 10 16 10Z"/>
+    <path d="M10 20H14C14.55 20 15 20.45 15 21V22C15 22.55 14.55 23 14 23H10C9.45 23 9 22.55 9 22V21C9 20.45 9.45 20 10 20Z"/>
+  </svg>
+);
 
 // Имитация данных для компонентов
 const NAV_ITEMS = [
-  { name: 'Магазины', icon: './svg/shopping-bag.svg' },
-  { name: 'Кафе и Рестораны', icon: './svg/utensils.svg' },
-  { name: 'Развлечения', icon: './svg/film.svg' },
-  { name: 'Услуги', icon: './svg/hand.svg' },
-  { name: 'Новости', icon: './svg/briefcase.svg' },
-  { name: 'Бренды', icon: './svg/grid.svg' },
+  { name: 'Магазины', icon: ShoppingBagIcon },
+  { name: 'Кафе и Рестораны', icon: UtensilsIcon },
+  { name: 'Развлечения', icon: PopcornIcon },
+  { name: 'Услуги', icon: ServicesIcon },
 ];
 
 const BRANDS = [
@@ -24,10 +60,10 @@ const BRANDS = [
 ];
 
 const CATEGORIES = [
-    { title: 'Магазины', icon: './svg/shopping-bag.svg' },
-    { title: 'Кафе и Рестораны', icon: './svg/utensils.svg' },
-    { title: 'Развлечения', icon: './svg/film.svg' },
-    { title: 'Услуги', icon: './svg/hand.svg' },
+    { title: 'Магазины', icon: ShoppingBagIcon },
+    { title: 'Кафе и Рестораны', icon: UtensilsIcon },
+    { title: 'Развлечения', icon: PopcornIcon },
+    { title: 'Услуги', icon: ServicesIcon },
 ];
 
 /**
@@ -40,7 +76,7 @@ const SamarkandLogoSVG = ({ className = "w-6 h-6" }) => (
 /**
  * Компонент верхнего навигационного меню и шапки
  */
-const Header = () => {
+const Header = ({ onLogoClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -105,7 +141,10 @@ const Header = () => {
         </div>
 
         <div className="flex justify-between items-center">
-            <div className="flex items-center space-x-3">
+            <div 
+                className="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition-opacity"
+                onClick={onLogoClick}
+            >
                 <SamarkandLogoSVG className="w-6 h-10" /> 
                 <h1 className="text-xl font-extrabold tracking-wider text-gray-800">
                     <span className={ACCENT_COLOR_HEADER}>{ACCENT_LOGO_TEXT}</span>
@@ -113,14 +152,15 @@ const Header = () => {
             </div>
             
             <nav className="hidden md:block">
-                <ul className="flex space-x-6 lg:space-x-8">
+                <ul className="flex space-x-4">
                     {NAV_ITEMS.map((item) => (
                         <li key={item.name}>
                             <a 
                                 href="#" 
-                                className={`text-gray-700 font-medium hover:${ACCENT_COLOR_HEADER} transition-colors text-sm uppercase tracking-wide`}
+                                className="flex flex-col items-center p-4 bg-amber-100 rounded-lg hover:bg-amber-200 transition-colors text-center min-w-[120px]"
                             >
-                                {item.name}
+                                <item.icon className="w-6 h-6 mb-2 text-gray-700" />
+                                <span className="text-gray-700 font-medium text-sm">{item.name}</span>
                             </a>
                         </li>
                     ))}
@@ -132,8 +172,8 @@ const Header = () => {
       <nav 
         className={`md:hidden overflow-hidden transition-all duration-300 ${isMenuOpen ? 'max-h-96' : 'max-h-0'}`}
       >
-        <ul className="bg-gray-50 border-t border-gray-200 p-4 space-y-2">
-            <div className="search-input flex items-center p-1 transition-all">
+        <div className="bg-gray-50 border-t border-gray-200 p-4">
+            <div className="search-input flex items-center p-1 transition-all mb-4">
                 <input
                     type="text"
                     placeholder="Поиск..."
@@ -149,19 +189,21 @@ const Header = () => {
                     <img src="./svg/search.svg" alt="Поиск" className="w-4 h-4" />
                 </button>
             </div>
-            {NAV_ITEMS.map((item) => (
-                <li key={item.name}>
-                    <a 
-                        href="#" 
-                        className={`flex items-center space-x-2 p-2 text-gray-700 font-medium hover:bg-amber-50 transition-colors rounded-lg`}
-                        onClick={() => setIsMenuOpen(false)}
-                    >
-                        <img src={item.icon} alt={item.name} className="w-4 h-4" />
-                        <span>{item.name}</span>
-                    </a>
-                </li>
-            ))}
-        </ul>
+            <ul className="grid grid-cols-2 gap-4">
+                {NAV_ITEMS.map((item) => (
+                    <li key={item.name}>
+                        <a 
+                            href="#" 
+                            className={`flex flex-col items-center p-4 bg-amber-100 rounded-lg hover:bg-amber-200 transition-colors text-center`}
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            <item.icon className="w-6 h-6 mb-2 text-gray-700" />
+                            <span className="text-gray-700 font-medium text-sm">{item.name}</span>
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        </div>
       </nav>
     </header>
   );
@@ -216,7 +258,7 @@ const CategoryGrid = () => {
                     {CATEGORIES.map((category) => (
                         <a key={category.title} href="#" className="p-6 category-tile text-center shadow-md hover:shadow-xl transition-all duration-300">
                             <div className="p-4 rounded-xl bg-transparent flex items-center justify-center">
-                                <img src={category.icon} alt={category.title} className="w-10 h-10 mb-3 invert" />
+                                <category.icon className="w-10 h-10 mb-3 text-gray-700" />
                             </div>
                             <span className="text-white font-medium text-sm sm:text-base">{category.title}</span>
                         </a>
@@ -345,6 +387,35 @@ const Footer = () => {
 };
 
 const App = () => {
+    const [currentView, setCurrentView] = useState('home');
+
+    const handleLogoClick = () => {
+        setCurrentView('home');
+    };
+
+    const renderContent = () => {
+        switch (currentView) {
+            case 'home':
+                return (
+                    <>
+                        <HeroSection />
+                        <CategoryGrid />
+                        <NewsSection />
+                        <BrandGrid />
+                    </>
+                );
+            default:
+                return (
+                    <>
+                        <HeroSection />
+                        <CategoryGrid />
+                        <NewsSection />
+                        <BrandGrid />
+                    </>
+                );
+        }
+    };
+
     return (
         <div className="min-h-screen bg-white font-sans antialiased">
             <script src="https://cdn.tailwindcss.com"></script>
@@ -354,12 +425,9 @@ const App = () => {
                     body { font-family: 'Inter', sans-serif; }
                 `}
             </style>
-            <Header />
+            <Header onLogoClick={handleLogoClick} />
             <main>
-                <HeroSection />
-                <CategoryGrid />
-                <NewsSection />
-                <BrandGrid />
+                {renderContent()}
             </main>
             <Footer />
         </div>
@@ -368,9 +436,9 @@ const App = () => {
 
 export default App;
 
-if (typeof ReactDOM !== 'undefined') {
-    const rootElement = document.getElementById('root');
-    if (rootElement) {
-        ReactDOM.createRoot(rootElement).render(React.createElement(App));
-    }
+// Инициализация React приложения
+const rootElement = document.getElementById('root');
+if (rootElement) {
+    const root = ReactDOM.createRoot(rootElement);
+    root.render(React.createElement(App));
 }

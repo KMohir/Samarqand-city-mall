@@ -116,15 +116,8 @@
     <!-- Кнопка вверх -->
     <button id="scrollToTopBtn" class="scroll-to-top" aria-label="Прокрутить вверх">↑</button>
     
-    <!-- React и ReactDOM CDN -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    
-    <!-- Babel для JSX (только для разработки) -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    
-    <!-- Наш React компонент -->
-    <script type="text/babel" src="./App.jsx"></script>
+    <!-- Vite будет автоматически обрабатывать React -->
+    <script type="module" src="/App.jsx"></script>
     
     <!-- JavaScript для кнопки вверх -->
     <script>
