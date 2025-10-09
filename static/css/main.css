@@ -1547,6 +1547,28 @@ svg {
     fill: var(--color-accent);
 }
 
+/* ==========================================
+   ВЫПАДАЮЩЕЕ МЕНЮ
+   ========================================== */
+
+/* Принудительные стили для выпадающего меню */
+.dropdown-menu-custom {
+    background-color: #D1B898 !important;
+}
+
+.mobile-menu-custom {
+    background-color: #D1B898 !important;
+}
+
+/* Стили для выпадающего меню */
+#desktopMenu {
+    background-color: #D1B898 !important;
+}
+
+#mobileMenu {
+    background-color: #D1B898 !important;
+}
+
 /* Стили для иконки меню */
 .menu-icon {
     fill: currentColor;

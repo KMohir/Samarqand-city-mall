@@ -10,28 +10,68 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
     const desktopMenuToggle = document.getElementById('desktopMenuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
+    const desktopMenu = document.getElementById('desktopMenu');
     
+    // Мобильное меню
     if (mobileMenuToggle && mobileMenu) {
         mobileMenuToggle.addEventListener('click', function() {
-            mobileMenu.classList.toggle('open');
+            const isOpen = mobileMenu.style.maxHeight && mobileMenu.style.maxHeight !== '0px';
+            if (isOpen) {
+                mobileMenu.style.maxHeight = '0px';
+            } else {
+                mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px';
+            }
         });
         
-        // Закрытие меню при клике на ссылку
+        // Закрытие мобильного меню при клике на ссылку
         const mobileMenuLinks = mobileMenu.querySelectorAll('a');
         mobileMenuLinks.forEach(link => {
             link.addEventListener('click', function() {
-                mobileMenu.classList.remove('open');
+                mobileMenu.style.maxHeight = '0px';
             });
         });
     }
 
-    // Десктопная кнопка "Меню" открывает то же меню
-    if (desktopMenuToggle && mobileMenu) {
+    // Десктопное выпадающее меню
+    if (desktopMenuToggle && desktopMenu) {
         desktopMenuToggle.addEventListener('click', function() {
-            mobileMenu.classList.toggle('open');
+            const isOpen = desktopMenu.style.maxHeight && desktopMenu.style.maxHeight !== '0px';
+            if (isOpen) {
+                desktopMenu.style.maxHeight = '0px';
+                desktopMenu.classList.add('hidden');
+            } else {
+                desktopMenu.style.maxHeight = desktopMenu.scrollHeight + 'px';
+                desktopMenu.classList.remove('hidden');
+            }
+        });
+        
+        // Закрытие десктопного меню при клике на ссылку
+        const desktopMenuLinks = desktopMenu.querySelectorAll('a');
+        desktopMenuLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                desktopMenu.style.maxHeight = '0px';
+                desktopMenu.classList.add('hidden');
+            });
         });
     }
+
+    // Закрытие меню при клике вне его
+    document.addEventListener('click', function(event) {
+        if (desktopMenu && desktopMenuToggle && !desktopMenu.contains(event.target) && !desktopMenuToggle.contains(event.target)) {
+            desktopMenu.style.maxHeight = '0px';
+            desktopMenu.classList.add('hidden');
+        }
+    });
 });
+
+// Глобальная функция для закрытия меню (вызывается из HTML)
+function closeMenu() {
+    const desktopMenu = document.getElementById('desktopMenu');
+    if (desktopMenu) {
+        desktopMenu.style.maxHeight = '0px';
+        desktopMenu.classList.add('hidden');
+    }
+}
 
 // ==========================================
 // ПЕРЕКЛЮЧЕНИЕ ВИДА КАТАЛОГА (СЕТКА/СПИСОК)
