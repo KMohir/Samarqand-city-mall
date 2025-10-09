@@ -1551,17 +1551,37 @@ svg {
    ВЫПАДАЮЩЕЕ МЕНЮ
    ========================================== */
 
-/* Принудительные стили для выпадающего меню */
-.dropdown-menu-custom {
-    background-color: #D1B898 !important;
+/* Стили для модального меню */
+#desktopMenu {
+    background-color: transparent !important;
+}
+
+#desktopMenu.hidden {
+    display: none !important;
+}
+
+/* Анимация появления модального окна */
+#desktopMenu .fixed {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#desktopMenu:not(.hidden) .fixed {
+    opacity: 1;
+}
+
+#desktopMenu .relative {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.3s ease;
+}
+
+#desktopMenu:not(.hidden) .relative {
+    opacity: 1;
+    transform: scale(1);
 }
 
 .mobile-menu-custom {
-    background-color: #D1B898 !important;
-}
-
-/* Стили для выпадающего меню */
-#desktopMenu {
     background-color: #D1B898 !important;
 }
 

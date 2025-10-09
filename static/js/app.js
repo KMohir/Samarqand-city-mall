@@ -32,24 +32,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Десктопное выпадающее меню
+    // Десктопное модальное меню
     if (desktopMenuToggle && desktopMenu) {
         desktopMenuToggle.addEventListener('click', function() {
-            const isOpen = desktopMenu.style.maxHeight && desktopMenu.style.maxHeight !== '0px';
-            if (isOpen) {
-                desktopMenu.style.maxHeight = '0px';
-                desktopMenu.classList.add('hidden');
-            } else {
-                desktopMenu.style.maxHeight = desktopMenu.scrollHeight + 'px';
-                desktopMenu.classList.remove('hidden');
-            }
+            desktopMenu.classList.remove('hidden');
         });
         
         // Закрытие десктопного меню при клике на ссылку
         const desktopMenuLinks = desktopMenu.querySelectorAll('a');
         desktopMenuLinks.forEach(link => {
             link.addEventListener('click', function() {
-                desktopMenu.style.maxHeight = '0px';
                 desktopMenu.classList.add('hidden');
             });
         });
@@ -58,7 +50,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Закрытие меню при клике вне его
     document.addEventListener('click', function(event) {
         if (desktopMenu && desktopMenuToggle && !desktopMenu.contains(event.target) && !desktopMenuToggle.contains(event.target)) {
-            desktopMenu.style.maxHeight = '0px';
             desktopMenu.classList.add('hidden');
         }
     });
@@ -68,7 +59,6 @@ document.addEventListener('DOMContentLoaded', function() {
 function closeMenu() {
     const desktopMenu = document.getElementById('desktopMenu');
     if (desktopMenu) {
-        desktopMenu.style.maxHeight = '0px';
         desktopMenu.classList.add('hidden');
     }
 }
