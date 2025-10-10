@@ -87,15 +87,15 @@ const Header = ({ onLogoClick }) => {
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
       <div className="container mx-auto px-3 sm:px-6 lg:px-8 py-2 md:py-3">
-        {/* Мобильная версия - компактный header */}
+        {/* Мобильная версия - адаптивный header для всех размеров телефонов */}
         <div className="md:hidden">
           <div className="flex justify-between items-center mb-2">
             <div 
-                className="flex items-center space-x-2 cursor-pointer hover:opacity-80 transition-opacity"
+                className="flex items-center space-x-1 sm:space-x-2 cursor-pointer hover:opacity-80 transition-opacity"
                 onClick={onLogoClick}
             >
-                <SamarkandLogoSVG className="w-5 h-8" /> 
-                <h1 className="text-lg font-extrabold tracking-wider text-gray-800">
+                <SamarkandLogoSVG className="w-4 h-6 xs:w-5 xs:h-8 sm:w-6 sm:h-10" /> 
+                <h1 className="text-sm xs:text-base sm:text-lg font-extrabold tracking-wider text-gray-800">
                     <span className={ACCENT_COLOR_HEADER}>{ACCENT_LOGO_TEXT}</span>
                 </h1>
             </div>
@@ -105,100 +105,102 @@ const Header = ({ onLogoClick }) => {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Открыть меню"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <svg className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}></path>
               </svg>
             </button>
           </div>
           
-          {/* Компактная информационная строка для мобильных */}
-          <div className="flex justify-between items-center text-xs text-gray-600 border-b pb-2">
+          {/* Адаптивная информационная строка для всех размеров телефонов */}
+          <div className="flex justify-between items-center text-xs xs:text-sm text-gray-600 border-b pb-2">
             <div className="flex items-center space-x-1">
-              <img src="./svg/clock.svg" alt="Время" className="w-3 h-3" />
-              <span>До 00:00</span>
+              <img src="./svg/clock.svg" alt="Время" className="w-2.5 h-2.5 xs:w-3 xs:h-3 sm:w-4 sm:h-4" />
+              <span className="hidden xs:inline">До 00:00</span>
+              <span className="xs:hidden">00:00</span>
             </div>
             <div className="flex items-center space-x-1">
-              <img src="./svg/phone.svg" alt="Контакт" className="w-3 h-3" />
+              <img src="./svg/phone.svg" alt="Контакт" className="w-2.5 h-2.5 xs:w-3 xs:h-3 sm:w-4 sm:h-4" />
               <span>Контакт</span>
             </div>
             <a href="#" className={`flex items-center space-x-1 text-gray-600 hover:${ACCENT_COLOR_HEADER} transition-colors`}>
-              <img src="./svg/map-pin.svg" alt="Как добраться" className="w-3 h-3" />
-              <span>Как добраться</span>
+              <img src="./svg/map-pin.svg" alt="Как добраться" className="w-2.5 h-2.5 xs:w-3 xs:h-3 sm:w-4 sm:h-4" />
+              <span className="hidden xs:inline">Как добраться</span>
+              <span className="xs:hidden">Карта</span>
             </a>
           </div>
         </div>
 
         {/* Десктопная версия */}
         <div className="hidden md:block">
-          <div className="flex justify-between items-center border-b pb-3 mb-3">
-            <div className="header-info">
-              <div className="flex items-center space-x-1">
-                <img src="./svg/clock.svg" alt="Время" className="w-4 h-4 inline-block" />
-                <span className="text-gray-700">Сегодня до 00:00</span>
-              </div>
-              <div className="flex items-center space-x-1">
-                <img src="./svg/phone.svg" alt="Контакт" className="w-4 h-4 inline-block" />
-                <span className="text-gray-700">Контакт</span>
-              </div>
-              <a href="#" className={`flex items-center space-x-1 text-gray-700 hover:${ACCENT_COLOR_HEADER} transition-colors`}>
-                <img src="./svg/map-pin.svg" alt="Как добраться" className="w-4 h-4 inline-block" />
-                <span>Как добраться</span>
-              </a>
+        <div className="flex justify-between items-center border-b pb-3 mb-3">
+          <div className="header-info">
+            <div className="flex items-center space-x-1">
+              <img src="./svg/clock.svg" alt="Время" className="w-4 h-4 inline-block" />
+              <span className="text-gray-700">Сегодня до 00:00</span>
             </div>
-
-            <div className="flex items-center space-x-3">
-              <button className="btn-beige text-white">RUS</button>
-
-              <div className="search-input flex items-center p-1 w-80 focus-within:border-amber-500 transition-all">
-                  <input
-                  type="text"
-                  placeholder="Поиск" 
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="flex-grow bg-transparent outline-none px-3 text-sm"
-                  />
-                  <button
-                  className={`text-gray-700 p-2 rounded-full hover:bg-gray-100 transition-colors`}
-                  onClick={() => console.log('Searching for:', searchTerm)}
-                  aria-label="Искать"
-                  >
-                  <img src="./svg/search.svg" alt="Поиск" className="w-4 h-4" />
-                  </button>
-              </div>
-              
-              <button className="btn-beige--dark px-3 py-1 rounded-full text-sm font-medium hover:opacity-90 transition-colors flex items-center space-x-2">
-                <img src="./svg/menu.svg" alt="Меню" className="w-4 h-4" />
-                <span>Меню</span>
-              </button>
+            <div className="flex items-center space-x-1">
+              <img src="./svg/phone.svg" alt="Контакт" className="w-4 h-4 inline-block" />
+              <span className="text-gray-700">Контакт</span>
             </div>
+            <a href="#" className={`flex items-center space-x-1 text-gray-700 hover:${ACCENT_COLOR_HEADER} transition-colors`}>
+              <img src="./svg/map-pin.svg" alt="Как добраться" className="w-4 h-4 inline-block" />
+              <span>Как добраться</span>
+            </a>
           </div>
 
-          <div className="flex justify-between items-center">
-              <div 
-                  className="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition-opacity"
-                  onClick={onLogoClick}
-              >
-                  <SamarkandLogoSVG className="w-6 h-10" /> 
-                  <h1 className="text-xl font-extrabold tracking-wider text-gray-800">
-                      <span className={ACCENT_COLOR_HEADER}>{ACCENT_LOGO_TEXT}</span>
-                  </h1>
-              </div>
-              
-              <nav className="hidden md:block">
-                  <ul className="flex space-x-4">
-                      {NAV_ITEMS.map((item) => (
-                          <li key={item.name}>
-                              <a 
-                                  href="#" 
-                                  className="flex flex-col items-center p-4 bg-amber-100 rounded-lg hover:bg-amber-200 transition-colors text-center min-w-[120px]"
-                              >
-                                  <item.icon className="w-6 h-6 mb-2 text-gray-700" />
-                                  <span className="text-gray-700 font-medium text-sm">{item.name}</span>
-                              </a>
-                          </li>
-                      ))}
-                  </ul>
-              </nav>
+            <div className="flex items-center space-x-3">
+            <button className="btn-beige text-white">RUS</button>
+
+            <div className="search-input flex items-center p-1 w-80 focus-within:border-amber-500 transition-all">
+                <input
+                type="text"
+                placeholder="Поиск" 
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="flex-grow bg-transparent outline-none px-3 text-sm"
+                />
+                <button
+                className={`text-gray-700 p-2 rounded-full hover:bg-gray-100 transition-colors`}
+                onClick={() => console.log('Searching for:', searchTerm)}
+                aria-label="Искать"
+                >
+                <img src="./svg/search.svg" alt="Поиск" className="w-4 h-4" />
+                </button>
+            </div>
+            
+            <button className="btn-beige--dark px-3 py-1 rounded-full text-sm font-medium hover:opacity-90 transition-colors flex items-center space-x-2">
+              <img src="./svg/menu.svg" alt="Меню" className="w-4 h-4" />
+              <span>Меню</span>
+            </button>
+          </div>
+        </div>
+
+        <div className="flex justify-between items-center">
+            <div 
+                className="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition-opacity"
+                onClick={onLogoClick}
+            >
+                <SamarkandLogoSVG className="w-6 h-10" /> 
+                <h1 className="text-xl font-extrabold tracking-wider text-gray-800">
+                    <span className={ACCENT_COLOR_HEADER}>{ACCENT_LOGO_TEXT}</span>
+                </h1>
+            </div>
+            
+            <nav className="hidden md:block">
+                <ul className="flex space-x-4">
+                    {NAV_ITEMS.map((item) => (
+                        <li key={item.name}>
+                            <a 
+                                href="#" 
+                                className="flex flex-col items-center p-4 bg-amber-100 rounded-lg hover:bg-amber-200 transition-colors text-center min-w-[120px]"
+                            >
+                                <item.icon className="w-6 h-6 mb-2 text-gray-700" />
+                                <span className="text-gray-700 font-medium text-sm">{item.name}</span>
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </nav>
           </div>
         </div>
       </div>
@@ -258,7 +260,7 @@ const HeroSection = () => {
 
     return (
         <div 
-            className="w-full hero flex items-center justify-center p-2 md:p-4 relative overflow-hidden"
+            className="w-full hero flex items-center justify-center p-1 xs:p-2 sm:p-3 md:p-4 relative overflow-hidden"
         >
             {heroImage ? (
                 <div className="absolute inset-0 z-0">
@@ -273,10 +275,10 @@ const HeroSection = () => {
             )}
             
             <div className="text-center z-10 relative">
-                <h2 className="text-3xl sm:text-6xl md:text-8xl font-extrabold text-white tracking-widest uppercase" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
+                <h2 className="text-2xl xs:text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold text-white tracking-widest uppercase" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
                     CITY MALL
                 </h2>
-                <p className="text-lg sm:text-xl md:text-3xl font-medium text-white mt-1 md:mt-2" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>
+                <p className="text-sm xs:text-base sm:text-lg md:text-2xl lg:text-3xl font-medium text-white mt-0.5 xs:mt-1 sm:mt-1.5 md:mt-2" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>
                     SAMARKAND
                 </p>
             </div>
@@ -286,15 +288,15 @@ const HeroSection = () => {
 
 const CategoryGrid = () => {
     return (
-        <section className="py-6 md:py-12 px-3 sm:px-6 lg:px-8 pattern-bg">
+        <section className="py-4 xs:py-6 sm:py-8 md:py-12 px-2 xs:px-3 sm:px-6 lg:px-8 pattern-bg">
             <div className="container mx-auto max-w-6xl">
-                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 lg:gap-8">
+                 <div className="grid grid-cols-2 md:grid-cols-4 gap-2 xs:gap-3 sm:gap-4 md:gap-6 lg:gap-8">
                     {CATEGORIES.map((category) => (
-                        <a key={category.title} href="#" className="p-3 md:p-6 category-tile text-center shadow-md hover:shadow-xl transition-all duration-300">
-                            <div className="p-2 md:p-4 rounded-xl bg-transparent flex items-center justify-center">
-                                <category.icon className="w-6 h-6 md:w-10 md:h-10 mb-2 md:mb-3 text-gray-700" />
+                        <a key={category.title} href="#" className="p-2 xs:p-3 sm:p-4 md:p-6 category-tile text-center shadow-md hover:shadow-xl transition-all duration-300">
+                            <div className="p-1 xs:p-2 sm:p-3 md:p-4 rounded-xl bg-transparent flex items-center justify-center">
+                                <category.icon className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 mb-1 xs:mb-2 sm:mb-2 md:mb-3 text-gray-700" />
                             </div>
-                            <span className="text-white font-medium text-xs md:text-sm lg:text-base">{category.title}</span>
+                            <span className="text-white font-medium text-xs xs:text-sm sm:text-sm md:text-base lg:text-base leading-tight">{category.title}</span>
                         </a>
                     ))}
                 </div>
@@ -311,13 +313,13 @@ const NewsSection = () => {
     ];
 
     return (
-        <section className="py-8 md:py-16 px-3 sm:px-6 lg:px-8 pattern-bg">
-            <h2 className="text-2xl md:text-4xl font-extrabold text-center mb-6 md:mb-10 text-gray-800">Новости</h2>
+        <section className="py-6 xs:py-8 sm:py-10 md:py-16 px-2 xs:px-3 sm:px-6 lg:px-8 pattern-bg">
+            <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-extrabold text-center mb-4 xs:mb-6 sm:mb-8 md:mb-10 text-gray-800">Новости</h2>
             <div className="container mx-auto max-w-6xl">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 xs:gap-4 sm:gap-5 md:gap-6">
                     {NEWS_ITEMS.map((item, index) => (
                         <div key={index} className="overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer bg-white">
-                            <img src={item.imageUrl} alt={item.alt} className="w-full h-48 md:h-96 object-cover object-top p-2 md:p-4" style={{ borderRadius: '12px' }} />
+                            <img src={item.imageUrl} alt={item.alt} className="w-full h-40 xs:h-48 sm:h-56 md:h-80 lg:h-96 object-cover object-top p-1.5 xs:p-2 sm:p-3 md:p-4" style={{ borderRadius: '12px' }} />
                         </div>
                     ))}
                 </div>
@@ -357,18 +359,18 @@ const BrandGrid = () => {
     );
 
     return (
-        <section className="py-6 md:py-12 px-3 sm:px-6 lg:px-8 pattern-bg">
-            <h2 className="text-xl md:text-4xl font-extrabold text-center mb-4 md:mb-10 text-gray-800">Бренды</h2>
+        <section className="py-4 xs:py-6 sm:py-8 md:py-12 px-2 xs:px-3 sm:px-6 lg:px-8 pattern-bg">
+            <h2 className="text-lg xs:text-xl sm:text-2xl md:text-4xl font-extrabold text-center mb-3 xs:mb-4 sm:mb-6 md:mb-10 text-gray-800">Бренды</h2>
             <div className="container mx-auto max-w-6xl">
-                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 md:gap-4">
+                <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1.5 xs:gap-2 sm:gap-3 md:gap-4">
                     {brands.map((brand) => (
-                        <div key={brand.name} className="brand-card shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer p-1 md:p-2">
+                        <div key={brand.name} className="brand-card shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer p-0.5 xs:p-1 sm:p-1.5 md:p-2">
                             <BrandLogo logo={brand.logo} />
                         </div>
                     ))}
                 </div>
-                <div className="text-center mt-6 md:mt-12">
-                    <button className="bg-gray-800 text-white px-4 md:px-8 py-2 md:py-3 rounded-full font-semibold hover:bg-amber-600 transition-colors shadow-lg text-xs md:text-base">Посмотреть все</button>
+                <div className="text-center mt-4 xs:mt-6 sm:mt-8 md:mt-12">
+                    <button className="bg-gray-800 text-white px-3 xs:px-4 sm:px-6 md:px-8 py-1.5 xs:py-2 sm:py-2.5 md:py-3 rounded-full font-semibold hover:bg-amber-600 transition-colors shadow-lg text-xs xs:text-sm sm:text-sm md:text-base">Посмотреть все</button>
                 </div>
             </div>
         </section>
@@ -380,52 +382,56 @@ const Footer = () => {
         <footer className="bg-[#D1B898] text-[#4A4A4A] border border-gray-800">
             <div className="max-w-6xl mx-auto px-3 md:px-6 py-4 md:py-8">
                 
-                {/* Мобильная версия футера */}
+                {/* Мобильная версия футера - адаптивная для всех размеров телефонов */}
                 <div className="md:hidden">
-                    {/* Социальные сети - компактно */}
-                    <div className="flex justify-center space-x-6 mb-4 pb-3 border-b border-[#D1B898]/30">
-                        <a href="#" className="flex items-center space-x-2 text-white hover:opacity-80 transition-opacity">
-                            <div className="w-5 h-5 bg-white rounded-sm flex items-center justify-center">
-                                <svg className="w-3 h-3 text-gray-800" fill="currentColor" viewBox="0 0 24 24">
+                    {/* Социальные сети - адаптивные размеры */}
+                    <div className="flex justify-center space-x-3 xs:space-x-4 sm:space-x-6 mb-3 xs:mb-4 sm:mb-4 pb-2 xs:pb-3 sm:pb-3 border-b border-[#D1B898]/30">
+                        <a href="#" className="flex items-center space-x-1 xs:space-x-2 text-white hover:opacity-80 transition-opacity">
+                            <div className="w-4 h-4 xs:w-5 xs:h-5 bg-white rounded-sm flex items-center justify-center">
+                                <svg className="w-2.5 h-2.5 xs:w-3 xs:h-3 text-gray-800" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                                 </svg>
                             </div>
-                            <span className="text-sm font-medium">samarkandcitymall</span>
+                            <span className="text-xs xs:text-sm font-medium hidden xs:inline">samarkandcitymall</span>
+                            <span className="text-xs font-medium xs:hidden">samarkand</span>
                         </a>
                         
-                        <a href="#" className="flex items-center space-x-2 text-white hover:opacity-80 transition-opacity">
-                            <div className="w-5 h-5 bg-white rounded-full flex items-center justify-center">
-                                <svg className="w-3 h-3 text-gray-800" fill="currentColor" viewBox="0 0 24 24">
+                        <a href="#" className="flex items-center space-x-1 xs:space-x-2 text-white hover:opacity-80 transition-opacity">
+                            <div className="w-4 h-4 xs:w-5 xs:h-5 bg-white rounded-full flex items-center justify-center">
+                                <svg className="w-2.5 h-2.5 xs:w-3 xs:h-3 text-gray-800" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
                                 </svg>
                             </div>
-                            <span className="text-sm font-medium">scmall</span>
+                            <span className="text-xs xs:text-sm font-medium">scmall</span>
                         </a>
                         
-                        <a href="#" className="flex items-center space-x-2 text-white hover:opacity-80 transition-opacity">
-                            <div className="w-5 h-5 bg-white rounded-full flex items-center justify-center">
-                                <svg className="w-3 h-3 text-gray-800" fill="currentColor" viewBox="0 0 24 24">
+                        <a href="#" className="flex items-center space-x-1 xs:space-x-2 text-white hover:opacity-80 transition-opacity">
+                            <div className="w-4 h-4 xs:w-5 xs:h-5 bg-white rounded-full flex items-center justify-center">
+                                <svg className="w-2.5 h-2.5 xs:w-3 xs:h-3 text-gray-800" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
                                 </svg>
                             </div>
-                            <span className="text-sm font-medium">samarkandcitymall</span>
+                            <span className="text-xs xs:text-sm font-medium hidden xs:inline">samarkandcitymall</span>
+                            <span className="text-xs font-medium xs:hidden">telegram</span>
                         </a>
                     </div>
 
-                    {/* Контакты - компактно */}
-                    <div className="text-center mb-4 pb-3 border-b border-[#D1B898]/30">
-                        <div className="text-[#4A4A4A] text-xs mb-2">
-                            <p>г. Самарканд, ул. Амира Темура, дом 83В</p>
+                    {/* Контакты - адаптивные размеры */}
+                    <div className="text-center mb-3 xs:mb-4 sm:mb-4 pb-2 xs:pb-3 sm:pb-3 border-b border-[#D1B898]/30">
+                        <div className="text-[#4A4A4A] text-xs xs:text-sm mb-1.5 xs:mb-2 sm:mb-2">
+                            <p className="hidden xs:block">г. Самарканд, ул. Амира Темура, дом 83В</p>
+                            <p className="xs:hidden">Самарканд, ул. Амира Темура</p>
                             <p>(+998) 98-000-22-00</p>
-                            <p>Звонки: 10:00 - 19:00</p>
+                            <p className="hidden xs:block">Звонки: 10:00 - 19:00</p>
+                            <p className="xs:hidden">10:00 - 19:00</p>
                         </div>
-                        <a href="/contact/" className="inline-block bg-[#D1B898] text-[#4A4A4A] px-4 py-1 rounded-full text-xs font-medium border border-[#4A4A4A]/30 hover:bg-[#4A4A4A] hover:text-[#D1B898] transition-colors">
+                        <a href="/contact/" className="inline-block bg-[#D1B898] text-[#4A4A4A] px-3 xs:px-4 sm:px-4 py-1 xs:py-1 sm:py-1 rounded-full text-xs xs:text-sm font-medium border border-[#4A4A4A]/30 hover:bg-[#4A4A4A] hover:text-[#D1B898] transition-colors">
                             ОБРАТНАЯ СВЯЗЬ
                         </a>
                     </div>
 
-                    {/* Навигация - компактно */}
-                    <div className="grid grid-cols-2 gap-2 text-xs mb-4 pb-3 border-b border-[#D1B898]/30">
+                    {/* Навигация - адаптивная сетка */}
+                    <div className="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-2 gap-1.5 xs:gap-2 sm:gap-2 text-xs xs:text-sm mb-3 xs:mb-4 sm:mb-4 pb-2 xs:pb-3 sm:pb-3 border-b border-[#D1B898]/30">
                         <a href="#" className="text-[#4A4A4A] hover:text-white transition-colors">Вопросы и ответы</a>
                         <a href="#" className="text-[#4A4A4A] hover:text-white transition-colors">Контакты</a>
                         <a href="#" className="text-[#4A4A4A] hover:text-white transition-colors">Аренда</a>
@@ -436,9 +442,10 @@ const Footer = () => {
                         <a href="#" className="text-[#4A4A4A] hover:text-white transition-colors">Вакансии</a>
                     </div>
 
-                    {/* Копирайт - компактно */}
-                    <div className="text-center text-xs text-[#4A4A4A]">
-                        <p>SAMARKAND CITY MALL, 2025</p>
+                    {/* Копирайт - адаптивные размеры */}
+                    <div className="text-center text-xs xs:text-sm text-[#4A4A4A]">
+                        <p className="hidden xs:block">SAMARKAND CITY MALL, 2025</p>
+                        <p className="xs:hidden">SCM, 2025</p>
                         <a href="#" className="hover:text-white transition-colors">Политика конфиденциальности</a>
                     </div>
                 </div>
@@ -571,6 +578,22 @@ const App = () => {
     return (
         <div className="min-h-screen bg-white font-sans antialiased">
             <script src="https://cdn.tailwindcss.com"></script>
+            <script>
+                {`
+                    tailwind.config = {
+                        theme: {
+                            screens: {
+                                'xs': '475px',
+                                'sm': '640px',
+                                'md': '768px',
+                                'lg': '1024px',
+                                'xl': '1280px',
+                                '2xl': '1536px',
+                            }
+                        }
+                    }
+                `}
+            </script>
             <style>
                 {`
                     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');

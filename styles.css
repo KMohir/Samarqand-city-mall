@@ -112,11 +112,90 @@ html, body {
 }
 
 /* ==========================================
-   АДАПТИВНЫЕ СТИЛИ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ
+   АДАПТИВНЫЕ СТИЛИ ДЛЯ ВСЕХ РАЗМЕРОВ ТЕЛЕФОНОВ
    ========================================== */
 
-/* Мобильные устройства */
-@media (max-width: 480px) {
+/* Очень маленькие телефоны (до 320px) - iPhone SE, старые Android */
+@media (max-width: 320px) {
+  .container {
+    padding: 0 8px;
+  }
+  
+  .header-info {
+    gap: 4px;
+    font-size: 10px;
+  }
+  
+  .search-input {
+    width: 100%;
+    font-size: 12px;
+  }
+  
+  /* Минимальные отступы */
+  .py-8 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  .py-12 {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+  
+  /* Очень компактные элементы */
+  .category-tile {
+    height: 100px;
+    padding: 0.5rem;
+  }
+  
+  .brand-card {
+    height: 50px;
+  }
+}
+
+/* Маленькие телефоны (321px - 375px) - iPhone SE, некоторые Android */
+@media (min-width: 321px) and (max-width: 375px) {
+  .container {
+    padding: 0 10px;
+  }
+  
+  .header-info {
+    gap: 6px;
+    font-size: 11px;
+  }
+  
+  .search-input {
+    width: 100%;
+    font-size: 13px;
+  }
+  
+  /* Компактные отступы */
+  .py-8 {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
+  
+  .py-12 {
+    padding-top: 1.75rem;
+    padding-bottom: 1.75rem;
+  }
+  
+  .category-tile {
+    height: 110px;
+    padding: 0.75rem;
+  }
+  
+  .brand-card {
+    height: 55px;
+  }
+}
+
+/* Средние телефоны (376px - 414px) - iPhone 12 mini, большинство Android */
+@media (min-width: 376px) and (max-width: 414px) {
+  .container {
+    padding: 0 12px;
+  }
+  
   .header-info {
     gap: 8px;
     font-size: 12px;
@@ -124,14 +203,9 @@ html, body {
   
   .search-input {
     width: 100%;
+    font-size: 14px;
   }
   
-  /* Дополнительные мобильные оптимизации */
-  .container {
-    padding: 0 12px;
-  }
-  
-  /* Компактные отступы для мобильных */
   .py-8 {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
@@ -140,6 +214,87 @@ html, body {
   .py-12 {
     padding-top: 2rem;
     padding-bottom: 2rem;
+  }
+  
+  .category-tile {
+    height: 120px;
+    padding: 1rem;
+  }
+  
+  .brand-card {
+    height: 60px;
+  }
+}
+
+/* Большие телефоны (415px - 480px) - iPhone 12, 13, 14, большие Android */
+@media (min-width: 415px) and (max-width: 480px) {
+  .container {
+    padding: 0 14px;
+  }
+  
+  .header-info {
+    gap: 10px;
+    font-size: 13px;
+  }
+  
+  .search-input {
+    width: 100%;
+    font-size: 15px;
+  }
+  
+  .py-8 {
+    padding-top: 1.75rem;
+    padding-bottom: 1.75rem;
+  }
+  
+  .py-12 {
+    padding-top: 2.25rem;
+    padding-bottom: 2.25rem;
+  }
+  
+  .category-tile {
+    height: 130px;
+    padding: 1.25rem;
+  }
+  
+  .brand-card {
+    height: 65px;
+  }
+}
+
+/* Очень большие телефоны (481px - 640px) - iPhone 14 Plus, большие Android */
+@media (min-width: 481px) and (max-width: 640px) {
+  .container {
+    padding: 0 16px;
+  }
+  
+  .header-info {
+    gap: 12px;
+    font-size: 14px;
+  }
+  
+  .search-input {
+    width: 100%;
+    font-size: 16px;
+  }
+  
+  .py-8 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  .py-12 {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+  
+  .category-tile {
+    height: 140px;
+    padding: 1.5rem;
+  }
+  
+  .brand-card {
+    height: 70px;
   }
 }
 

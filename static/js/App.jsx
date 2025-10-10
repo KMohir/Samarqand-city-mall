@@ -557,7 +557,23 @@ const App = () => {
     return (
         <div className="min-h-screen bg-white font-sans antialiased">
             <script src="https://cdn.tailwindcss.com"></script>
-            {/* Настраиваем шрифт Inter (если не указан другой) */}
+            {/* Настраиваем Tailwind CSS с дополнительными брейкпоинтами */}
+            <script>
+                {`
+                    tailwind.config = {
+                        theme: {
+                            screens: {
+                                'xs': '475px',
+                                'sm': '640px',
+                                'md': '768px',
+                                'lg': '1024px',
+                                'xl': '1280px',
+                                '2xl': '1536px',
+                            }
+                        }
+                    }
+                `}
+            </script>
             <style>
                 {`
                     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
