@@ -86,86 +86,120 @@ const Header = ({ onLogoClick }) => {
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3">
-        <div className="flex justify-between items-center border-b pb-3 mb-3">
-          <div className="header-info">
-            <div className="flex items-center space-x-1">
-              <img src="./svg/clock.svg" alt="Время" className="w-4 h-4 inline-block" />
-              <span className="text-gray-700">Сегодня до 00:00</span>
-            </div>
-            <div className="flex items-center space-x-1">
-              <img src="./svg/phone.svg" alt="Контакт" className="w-4 h-4 inline-block" />
-              <span className="text-gray-700">Контакт</span>
-            </div>
-            <a href="#" className={`flex items-center space-x-1 text-gray-700 hover:${ACCENT_COLOR_HEADER} transition-colors`}>
-              <img src="./svg/map-pin.svg" alt="Как добраться" className="w-4 h-4 inline-block" />
-              <span>Как добраться</span>
-            </a>
-          </div>
-
-          <div className="hidden md:flex items-center space-x-3">
-            <button className="btn-beige text-white">RUS</button>
-
-            <div className="search-input flex items-center p-1 w-80 focus-within:border-amber-500 transition-all">
-                <input
-                type="text"
-                placeholder="Поиск" 
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="flex-grow bg-transparent outline-none px-3 text-sm"
-                />
-                <button
-                className={`text-gray-700 p-2 rounded-full hover:bg-gray-100 transition-colors`}
-                onClick={() => console.log('Searching for:', searchTerm)}
-                aria-label="Искать"
-                >
-                <img src="./svg/search.svg" alt="Поиск" className="w-4 h-4" />
-                </button>
-            </div>
-            
-            <button className="btn-beige--dark px-3 py-1 rounded-full text-sm font-medium hover:opacity-90 transition-colors flex items-center space-x-2">
-              <img src="./svg/menu.svg" alt="Меню" className="w-4 h-4" />
-              <span>Меню</span>
-            </button>
-          </div>
-
-          <button
-            className="md:hidden text-gray-700 focus:outline-none"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Открыть меню"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}></path>
-            </svg>
-          </button>
-        </div>
-
-        <div className="flex justify-between items-center">
+      <div className="container mx-auto px-3 sm:px-6 lg:px-8 py-2 md:py-3">
+        {/* Мобильная версия - компактный header */}
+        <div className="md:hidden">
+          <div className="flex justify-between items-center mb-2">
             <div 
-                className="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition-opacity"
+                className="flex items-center space-x-2 cursor-pointer hover:opacity-80 transition-opacity"
                 onClick={onLogoClick}
             >
-                <SamarkandLogoSVG className="w-6 h-10" /> 
-                <h1 className="text-xl font-extrabold tracking-wider text-gray-800">
+                <SamarkandLogoSVG className="w-5 h-8" /> 
+                <h1 className="text-lg font-extrabold tracking-wider text-gray-800">
                     <span className={ACCENT_COLOR_HEADER}>{ACCENT_LOGO_TEXT}</span>
                 </h1>
             </div>
             
-            <nav className="hidden md:block">
-                <ul className="flex space-x-4">
-                    {NAV_ITEMS.map((item) => (
-                        <li key={item.name}>
-                            <a 
-                                href="#" 
-                                className="flex flex-col items-center p-4 bg-amber-100 rounded-lg hover:bg-amber-200 transition-colors text-center min-w-[120px]"
-                            >
-                                <item.icon className="w-6 h-6 mb-2 text-gray-700" />
-                                <span className="text-gray-700 font-medium text-sm">{item.name}</span>
-                            </a>
-                        </li>
-                    ))}
-                </ul>
-            </nav>
+            <button
+              className="text-gray-700 focus:outline-none"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Открыть меню"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}></path>
+              </svg>
+            </button>
+          </div>
+          
+          {/* Компактная информационная строка для мобильных */}
+          <div className="flex justify-between items-center text-xs text-gray-600 border-b pb-2">
+            <div className="flex items-center space-x-1">
+              <img src="./svg/clock.svg" alt="Время" className="w-3 h-3" />
+              <span>До 00:00</span>
+            </div>
+            <div className="flex items-center space-x-1">
+              <img src="./svg/phone.svg" alt="Контакт" className="w-3 h-3" />
+              <span>Контакт</span>
+            </div>
+            <a href="#" className={`flex items-center space-x-1 text-gray-600 hover:${ACCENT_COLOR_HEADER} transition-colors`}>
+              <img src="./svg/map-pin.svg" alt="Как добраться" className="w-3 h-3" />
+              <span>Как добраться</span>
+            </a>
+          </div>
+        </div>
+
+        {/* Десктопная версия */}
+        <div className="hidden md:block">
+          <div className="flex justify-between items-center border-b pb-3 mb-3">
+            <div className="header-info">
+              <div className="flex items-center space-x-1">
+                <img src="./svg/clock.svg" alt="Время" className="w-4 h-4 inline-block" />
+                <span className="text-gray-700">Сегодня до 00:00</span>
+              </div>
+              <div className="flex items-center space-x-1">
+                <img src="./svg/phone.svg" alt="Контакт" className="w-4 h-4 inline-block" />
+                <span className="text-gray-700">Контакт</span>
+              </div>
+              <a href="#" className={`flex items-center space-x-1 text-gray-700 hover:${ACCENT_COLOR_HEADER} transition-colors`}>
+                <img src="./svg/map-pin.svg" alt="Как добраться" className="w-4 h-4 inline-block" />
+                <span>Как добраться</span>
+              </a>
+            </div>
+
+            <div className="flex items-center space-x-3">
+              <button className="btn-beige text-white">RUS</button>
+
+              <div className="search-input flex items-center p-1 w-80 focus-within:border-amber-500 transition-all">
+                  <input
+                  type="text"
+                  placeholder="Поиск" 
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="flex-grow bg-transparent outline-none px-3 text-sm"
+                  />
+                  <button
+                  className={`text-gray-700 p-2 rounded-full hover:bg-gray-100 transition-colors`}
+                  onClick={() => console.log('Searching for:', searchTerm)}
+                  aria-label="Искать"
+                  >
+                  <img src="./svg/search.svg" alt="Поиск" className="w-4 h-4" />
+                  </button>
+              </div>
+              
+              <button className="btn-beige--dark px-3 py-1 rounded-full text-sm font-medium hover:opacity-90 transition-colors flex items-center space-x-2">
+                <img src="./svg/menu.svg" alt="Меню" className="w-4 h-4" />
+                <span>Меню</span>
+              </button>
+            </div>
+          </div>
+
+          <div className="flex justify-between items-center">
+              <div 
+                  className="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition-opacity"
+                  onClick={onLogoClick}
+              >
+                  <SamarkandLogoSVG className="w-6 h-10" /> 
+                  <h1 className="text-xl font-extrabold tracking-wider text-gray-800">
+                      <span className={ACCENT_COLOR_HEADER}>{ACCENT_LOGO_TEXT}</span>
+                  </h1>
+              </div>
+              
+              <nav className="hidden md:block">
+                  <ul className="flex space-x-4">
+                      {NAV_ITEMS.map((item) => (
+                          <li key={item.name}>
+                              <a 
+                                  href="#" 
+                                  className="flex flex-col items-center p-4 bg-amber-100 rounded-lg hover:bg-amber-200 transition-colors text-center min-w-[120px]"
+                              >
+                                  <item.icon className="w-6 h-6 mb-2 text-gray-700" />
+                                  <span className="text-gray-700 font-medium text-sm">{item.name}</span>
+                              </a>
+                          </li>
+                      ))}
+                  </ul>
+              </nav>
+          </div>
         </div>
       </div>
 
@@ -224,7 +258,7 @@ const HeroSection = () => {
 
     return (
         <div 
-            className="w-full hero flex items-center justify-center p-4 relative overflow-hidden"
+            className="w-full hero flex items-center justify-center p-2 md:p-4 relative overflow-hidden"
         >
             {heroImage ? (
                 <div className="absolute inset-0 z-0">
@@ -239,10 +273,10 @@ const HeroSection = () => {
             )}
             
             <div className="text-center z-10 relative">
-                <h2 className="text-6xl sm:text-8xl font-extrabold text-white tracking-widest uppercase" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
+                <h2 className="text-3xl sm:text-6xl md:text-8xl font-extrabold text-white tracking-widest uppercase" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
                     CITY MALL
                 </h2>
-                <p className="text-xl sm:text-3xl font-medium text-white mt-2" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>
+                <p className="text-lg sm:text-xl md:text-3xl font-medium text-white mt-1 md:mt-2" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>
                     SAMARKAND
                 </p>
             </div>
@@ -252,15 +286,15 @@ const HeroSection = () => {
 
 const CategoryGrid = () => {
     return (
-        <section className="py-12 px-4 sm:px-6 lg:px-8 pattern-bg">
+        <section className="py-6 md:py-12 px-3 sm:px-6 lg:px-8 pattern-bg">
             <div className="container mx-auto max-w-6xl">
-                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8">
+                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 lg:gap-8">
                     {CATEGORIES.map((category) => (
-                        <a key={category.title} href="#" className="p-6 category-tile text-center shadow-md hover:shadow-xl transition-all duration-300">
-                            <div className="p-4 rounded-xl bg-transparent flex items-center justify-center">
-                                <category.icon className="w-10 h-10 mb-3 text-gray-700" />
+                        <a key={category.title} href="#" className="p-3 md:p-6 category-tile text-center shadow-md hover:shadow-xl transition-all duration-300">
+                            <div className="p-2 md:p-4 rounded-xl bg-transparent flex items-center justify-center">
+                                <category.icon className="w-6 h-6 md:w-10 md:h-10 mb-2 md:mb-3 text-gray-700" />
                             </div>
-                            <span className="text-white font-medium text-sm sm:text-base">{category.title}</span>
+                            <span className="text-white font-medium text-xs md:text-sm lg:text-base">{category.title}</span>
                         </a>
                     ))}
                 </div>
@@ -277,13 +311,13 @@ const NewsSection = () => {
     ];
 
     return (
-        <section className="py-16 px-4 sm:px-6 lg:px-8 pattern-bg">
-            <h2 className="text-4xl font-extrabold text-center mb-10 text-gray-800">Новости</h2>
+        <section className="py-8 md:py-16 px-3 sm:px-6 lg:px-8 pattern-bg">
+            <h2 className="text-2xl md:text-4xl font-extrabold text-center mb-6 md:mb-10 text-gray-800">Новости</h2>
             <div className="container mx-auto max-w-6xl">
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                     {NEWS_ITEMS.map((item, index) => (
                         <div key={index} className="overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer bg-white">
-                            <img src={item.imageUrl} alt={item.alt} className="w-full h-96 object-cover object-top p-4" style={{ borderRadius: '12px' }} />
+                            <img src={item.imageUrl} alt={item.alt} className="w-full h-48 md:h-96 object-cover object-top p-2 md:p-4" style={{ borderRadius: '12px' }} />
                         </div>
                     ))}
                 </div>
@@ -323,18 +357,18 @@ const BrandGrid = () => {
     );
 
     return (
-        <section className="py-12 px-4 sm:px-6 lg:px-8 pattern-bg">
-            <h2 className="text-4xl font-extrabold text-center mb-10 text-gray-800">Бренды</h2>
+        <section className="py-8 md:py-12 px-3 sm:px-6 lg:px-8 pattern-bg">
+            <h2 className="text-2xl md:text-4xl font-extrabold text-center mb-6 md:mb-10 text-gray-800">Бренды</h2>
             <div className="container mx-auto max-w-6xl">
-                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4">
                     {brands.map((brand) => (
                         <div key={brand.name} className="brand-card shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer p-2">
                             <BrandLogo logo={brand.logo} />
                         </div>
                     ))}
                 </div>
-                <div className="text-center mt-12">
-                    <button className="bg-gray-800 text-white px-8 py-3 rounded-full font-semibold hover:bg-amber-600 transition-colors shadow-lg">Посмотреть все</button>
+                <div className="text-center mt-8 md:mt-12">
+                    <button className="bg-gray-800 text-white px-6 md:px-8 py-2 md:py-3 rounded-full font-semibold hover:bg-amber-600 transition-colors shadow-lg text-sm md:text-base">Посмотреть все</button>
                 </div>
             </div>
         </section>
@@ -398,9 +432,9 @@ const Footer = () => {
                             <p className="mb-4">Звонки: 10:00 - 19:00</p>
                             
                             {/* Кнопка обратной связи */}
-                            <button className="bg-[#D1B898] text-[#4A4A4A] px-6 py-2 rounded-full text-sm font-medium border border-[#4A4A4A]/30 hover:bg-[#4A4A4A] hover:text-[#D1B898] transition-colors">
+                            <a href="/contact/" className="inline-block bg-[#D1B898] text-[#4A4A4A] px-6 py-2 rounded-full text-sm font-medium border border-[#4A4A4A]/30 hover:bg-[#4A4A4A] hover:text-[#D1B898] transition-colors">
                                 ОБРАТНАЯ СВЯЗЬ
-                            </button>
+                            </a>
                         </div>
                     </div>
 

@@ -205,18 +205,18 @@ const HeroSection = () => {
 
     return (
         <div 
-            className="w-full h-[45vh] md:h-[60vh] flex items-center justify-center p-4 relative overflow-hidden"
+            className="w-full h-[30vh] md:h-[45vh] lg:h-[60vh] flex items-center justify-center p-2 md:p-4 relative overflow-hidden"
             style={backgroundStyle}
         >
             
             <div className="text-center z-10">
-                <h2 className="text-6xl sm:text-8xl font-extrabold text-white tracking-widest uppercase"
+                <h2 className="text-3xl sm:text-6xl md:text-8xl font-extrabold text-white tracking-widest uppercase"
                     // Добавляем тень к тексту, чтобы он лучше читался на текстурном фоне
                     style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}
                 >
                     CITY MALL
                 </h2>
-                <p className="text-xl sm:text-3xl font-medium text-white mt-2"
+                <p className="text-lg sm:text-xl md:text-3xl font-medium text-white mt-1 md:mt-2"
                     style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}
                 >
                     SAMARKAND
@@ -444,9 +444,9 @@ const Footer = () => {
                             <p className="mb-4">Звонки: 10:00 - 19:00</p>
                             
                             {/* Кнопка обратной связи */}
-                            <button className="bg-[#D1B898] text-[#4A4A4A] px-6 py-2 rounded-full text-sm font-medium border border-[#4A4A4A]/30 hover:bg-[#4A4A4A] hover:text-[#D1B898] transition-colors">
+                            <a href="/contact/" className="inline-block bg-[#D1B898] text-[#4A4A4A] px-6 py-2 rounded-full text-sm font-medium border border-[#4A4A4A]/30 hover:bg-[#4A4A4A] hover:text-[#D1B898] transition-colors">
                                 ОБРАТНАЯ СВЯЗЬ
-                            </button>
+                            </a>
                         </div>
                     </div>
 

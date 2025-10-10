@@ -40,21 +40,33 @@ html, body {
 
 /* Hero */
 .hero {
-  min-height: 45vh;
+  min-height: 30vh;
   background-color: var(--mall-orange);
   background-size: cover;
   background-position: center;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    min-height: 45vh;
+  }
 }
 
 /* Плитки категорий */
 .category-tile {
   background: var(--mall-beige);
   border-radius: 16px;
-  height: 160px;
+  height: 120px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .category-tile {
+    height: 160px;
+  }
 }
 
 /* Паттерн фона секций */
@@ -66,13 +78,19 @@ html, body {
 
 /* Бренды */
 .brand-card {
-  height: 112px;
+  height: 80px;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #ffffff;
+}
+
+@media (min-width: 768px) {
+  .brand-card {
+    height: 112px;
+  }
 }
 
 /* Футер */
@@ -85,40 +103,8 @@ html, body {
    АДАПТИВНЫЕ СТИЛИ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ
    ========================================== */
 
-/* Планшеты и меньше */
-@media (max-width: 768px) {
-  .hero {
-    min-height: 35vh;
-  }
-  
-  .category-tile {
-    height: 140px;
-  }
-  
-  .brand-card {
-    height: 100px;
-  }
-  
-  .header-info {
-    gap: 12px;
-    font-size: 14px;
-  }
-}
-
 /* Мобильные устройства */
 @media (max-width: 480px) {
-  .hero {
-    min-height: 30vh;
-  }
-  
-  .category-tile {
-    height: 120px;
-  }
-  
-  .brand-card {
-    height: 80px;
-  }
-  
   .header-info {
     gap: 8px;
     font-size: 12px;
@@ -126,6 +112,22 @@ html, body {
   
   .search-input {
     width: 100%;
+  }
+  
+  /* Дополнительные мобильные оптимизации */
+  .container {
+    padding: 0 12px;
+  }
+  
+  /* Компактные отступы для мобильных */
+  .py-8 {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+  
+  .py-12 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 }
 
