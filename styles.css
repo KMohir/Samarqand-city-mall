@@ -81,4 +81,52 @@ html, body {
   color: #4A4A4A;
 }
 
+/* ==========================================
+   АДАПТИВНЫЕ СТИЛИ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ
+   ========================================== */
+
+/* Планшеты и меньше */
+@media (max-width: 768px) {
+  .hero {
+    min-height: 35vh;
+  }
+  
+  .category-tile {
+    height: 140px;
+  }
+  
+  .brand-card {
+    height: 100px;
+  }
+  
+  .header-info {
+    gap: 12px;
+    font-size: 14px;
+  }
+}
+
+/* Мобильные устройства */
+@media (max-width: 480px) {
+  .hero {
+    min-height: 30vh;
+  }
+  
+  .category-tile {
+    height: 120px;
+  }
+  
+  .brand-card {
+    height: 80px;
+  }
+  
+  .header-info {
+    gap: 8px;
+    font-size: 12px;
+  }
+  
+  .search-input {
+    width: 100%;
+  }
+}
+
 

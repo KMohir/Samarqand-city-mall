@@ -171,26 +171,38 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ==========================================
-// ПОИСК С АВТОДОПОЛНЕНИЕМ (ОПЦИОНАЛЬНО)
+// ПОИСК С АВТОДОПОЛНЕНИЕМ И СИНХРОНИЗАЦИЕЙ
 // ==========================================
 
 document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.querySelector('.search-input');
+    // Получаем все поисковые поля (десктопное и мобильное)
+    const searchInputs = document.querySelectorAll('input[type="text"][placeholder*="Поиск"]');
     
-    if (searchInput) {
+    if (searchInputs.length > 0) {
         let searchTimeout;
         
-        searchInput.addEventListener('input', function() {
-            clearTimeout(searchTimeout);
-            
-            const query = this.value.trim();
-            
-            if (query.length >= 3) {
-                searchTimeout = setTimeout(() => {
-                    // Здесь можно добавить AJAX запрос для автодополнения
-                    console.log('Поиск:', query);
-                }, 300);
-            }
+        // Синхронизируем значение между всеми полями поиска
+        searchInputs.forEach(input => {
+            input.addEventListener('input', function() {
+                const query = this.value;
+                
+                // Синхронизируем значение со всеми другими полями поиска
+                searchInputs.forEach(otherInput => {
+                    if (otherInput !== this) {
+                        otherInput.value = query;
+                    }
+                });
+                
+                // Автодополнение с задержкой
+                clearTimeout(searchTimeout);
+                
+                if (query.trim().length >= 3) {
+                    searchTimeout = setTimeout(() => {
+                        // Здесь можно добавить AJAX запрос для автодополнения
+                        console.log('Поиск:', query.trim());
+                    }, 300);
+                }
+            });
         });
     }
 });

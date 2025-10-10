@@ -148,9 +148,9 @@ const Header = () => {
       <nav 
         className={`md:hidden overflow-hidden transition-all duration-300 ${isMenuOpen ? 'max-h-96' : 'max-h-0'}`}
       >
-        <ul className="bg-gray-50 border-t border-gray-200 p-4 space-y-2">
+        <div className="bg-gray-50 border-t border-gray-200 p-4">
             {/* Поиск в мобильном меню */}
-            <div className="flex items-center border border-gray-300 rounded-full p-1 focus-within:border-amber-500 transition-all">
+            <div className="flex items-center border border-gray-300 rounded-full p-1 focus-within:border-amber-500 transition-all mb-4">
                 <input
                     type="text"
                     placeholder="Поиск..."
@@ -166,19 +166,22 @@ const Header = () => {
                     <Search size={18} />
                 </button>
             </div>
-            {NAV_ITEMS.map((item) => (
-                <li key={item.name}>
-                    <a 
-                        href="#" 
-                        className={`flex items-center space-x-2 p-2 text-gray-700 font-medium hover:bg-amber-50 transition-colors rounded-lg`}
-                        onClick={() => setIsMenuOpen(false)}
-                    >
-                        <item.icon size={18} className={ACCENT_COLOR_HEADER} />
-                        <span>{item.name}</span>
-                    </a>
-                </li>
-            ))}
-        </ul>
+            {/* Навигационные элементы в виде плиток */}
+            <ul className="grid grid-cols-2 gap-4">
+                {NAV_ITEMS.map((item) => (
+                    <li key={item.name}>
+                        <a 
+                            href="#" 
+                            className={`flex flex-col items-center p-4 bg-amber-100 rounded-lg hover:bg-amber-200 transition-colors text-center`}
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            <item.icon size={24} className="mb-2 text-gray-700" />
+                            <span className="text-gray-700 font-medium text-sm">{item.name}</span>
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        </div>
       </nav>
     </header>
   );
