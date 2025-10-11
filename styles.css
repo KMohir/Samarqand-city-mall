@@ -5,6 +5,53 @@
   --text-dark: #222222;
 }
 
+/* КРИТИЧЕСКОЕ ИСПРАВЛЕНИЕ: Убираем клетчатый фон на мобильных устройствах */
+@media (max-width: 768px) {
+  * {
+    background-image: none !important;
+  }
+  
+  .pattern-bg, section.pattern-bg, [class*="pattern"] {
+    background-image: none !important;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+  }
+  
+  /* Принудительно убираем фон у всех секций */
+  section {
+    background-image: none !important;
+    background: #ffffff !important;
+  }
+  
+  /* Убираем фон у категорий */
+  .category-tile, a[class*="category"] {
+    background-image: none !important;
+    background: #D1B898 !important;
+  }
+  
+  /* Убираем фон у всех элементов с паттерном */
+  [style*="background-image"], [style*="backgroundImage"] {
+    background-image: none !important;
+    background: #ffffff !important;
+  }
+}
+
+/* Дополнительная защита для Samsung Galaxy и других Android */
+@media (max-width: 414px) and (min-width: 360px) {
+  * {
+    background-image: none !important;
+  }
+  
+  .pattern-bg, section, .category-tile {
+    background-image: none !important;
+    background: #ffffff !important;
+  }
+  
+  .category-tile {
+    background: #D1B898 !important;
+  }
+}
+
 /* Глобально выравниваем шрифт */
 html, body {
   font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -84,19 +131,13 @@ html, body {
 
 /* Бренды */
 .brand-card {
-  height: 60px;
+  height: 80px;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #ffffff;
-}
-
-@media (min-width: 640px) {
-  .brand-card {
-    height: 80px;
-  }
 }
 
 @media (min-width: 768px) {
@@ -295,6 +336,96 @@ html, body {
   
   .brand-card {
     height: 70px;
+  }
+}
+
+/* ==========================================
+   ИСПРАВЛЕНИЯ ДЛЯ ЭКРАНОВ МЕНЬШЕ 570px
+   ========================================== */
+
+/* Критический размер - убираем клетчатый фон и оптимизируем layout */
+@media (max-width: 570px) {
+  /* Убираем клетчатый фон навсегда - максимально принудительно */
+  .pattern-bg {
+    background-image: none !important;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+  }
+  
+  /* Дополнительная защита для всех элементов с фоном */
+  section.pattern-bg {
+    background-image: none !important;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+  }
+  
+  /* Убираем любые inline стили с фоном */
+  section[style*="background"] {
+    background-image: none !important;
+    background: #ffffff !important;
+  }
+  
+  /* Оптимизируем header для маленьких экранов */
+  .header-info {
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    padding: 0.5rem 0;
+  }
+  
+  /* Уменьшаем категории */
+  .category-tile {
+    height: 80px;
+    padding: 0.5rem;
+  }
+  
+  .category-tile img {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+  }
+  
+  .category-tile span {
+    font-size: 0.75rem !important;
+    margin-top: 0.25rem !important;
+  }
+  
+  /* Уменьшаем карточки брендов */
+  .brand-card {
+    height: 60px;
+    padding: 0.25rem;
+  }
+  
+  /* Оптимизируем поиск */
+  .search-input {
+    width: 100%;
+    font-size: 0.875rem;
+    padding: 0.5rem;
+  }
+  
+  /* Уменьшаем общие отступы */
+  .py-6 {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+  
+  .py-8 {
+    padding-top: 1.25rem !important;
+    padding-bottom: 1.25rem !important;
+  }
+  
+  .py-12 {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+  
+  /* Уменьшаем отступы контейнера */
+  .px-4 {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+  
+  .px-6 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
   }
 }
 

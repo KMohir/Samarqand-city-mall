@@ -233,16 +233,9 @@ const CategoryGrid = () => {
     // Бежевый фон и паттерн, как на втором скриншоте
     const BACKGROUND_COLOR = '#D1B898'; 
 
-    const backgroundStyle = {
-        backgroundColor: 'white', // На скриншоте фон у плиток белый, а общий фон страницы белый или очень светлый
-        // Имитация паттерна SAMARKAND DRY на общем фоне
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M0 0h40v40H0zM40 40h40v40H40z' fill-opacity='0.05'/%3E%3Cpath d='M10 10h20v20H10zM50 50h20v20H50z'/%3E%3C/g%3E%3C/svg%3E")`,
-        backgroundSize: '40px 40px',
-    };
-
     return (
-        // Используем чистый белый фон, чтобы плитки выделялись
-        <section className="py-12 px-4 sm:px-6 lg:px-8" style={backgroundStyle}>
+        // Используем CSS класс pattern-bg для адаптивного фона
+        <section className="py-12 px-4 sm:px-6 lg:px-8 pattern-bg">
             <div className="container mx-auto max-w-6xl">
                  <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8">
                     {CATEGORIES.map((category) => (
@@ -277,16 +270,9 @@ const NewsSection = () => {
         { imageUrl: "https://placehold.co/300x400/D1B898/333333?text=Мода", alt: "Мужчина в деловом стиле" },
         { imageUrl: "https://placehold.co/300x400/D1B898/333333?text=Стиль", alt: "Женщина в юбке" },
     ];
-    
-    // Бежевый паттерн для фона, как на скриншоте с новостями
-    const backgroundStyle = {
-        backgroundColor: 'white', 
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M0 0h40v40H0zM40 40h40v40H40z' fill-opacity='0.05'/%3E%3Cpath d='M10 10h20v20H10zM50 50h20v20H50z'/%3E%3C/g%3E%3C/svg%3E")`,
-        backgroundSize: '40px 40px',
-    };
 
     return (
-        <section className="py-16 px-4 sm:px-6 lg:px-8" style={backgroundStyle}>
+        <section className="py-16 px-4 sm:px-6 lg:px-8 pattern-bg">
             <h2 className="text-4xl font-extrabold text-center mb-10 text-gray-800">Новости</h2>
             
             <div className="container mx-auto max-w-6xl">
@@ -345,24 +331,16 @@ const BrandGrid = () => {
         </div>
     );
 
-    // Бежевый паттерн для фона, как на скриншоте с брендами
-    const backgroundStyle = {
-        backgroundColor: 'white', 
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M0 0h40v40H0zM40 40h40v40H40z' fill-opacity='0.05'/%3E%3Cpath d='M10 10h20v20H10zM50 50h20v20H50z'/%3E%3C/g%3E%3C/svg%3E")`,
-        backgroundSize: '40px 40px',
-    };
-
-
     return (
-        <section className="py-6 md:py-12 px-3 sm:px-6 lg:px-8" style={backgroundStyle}>
-            <h2 className="text-xl md:text-4xl font-extrabold text-center mb-4 md:mb-10 text-gray-800">Бренды</h2>
+        <section className="py-4 md:py-12 px-3 sm:px-6 lg:px-8 pattern-bg">
+            <h2 className="text-xl sm:text-2xl md:text-4xl font-extrabold text-center mb-4 md:mb-10 text-gray-800">Бренды</h2>
             
             <div className="container mx-auto max-w-6xl">
-                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 md:gap-4">
+                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 sm:gap-3 md:gap-4">
                     {brands.map((brand) => (
                         <div 
                             key={brand.name} 
-                            className={`w-full h-16 md:h-24 lg:h-28 rounded-md flex items-center justify-center border border-gray-200 shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer bg-white p-1 md:p-2`}
+                            className={`w-full h-16 sm:h-20 md:h-24 lg:h-28 rounded-md flex items-center justify-center border border-gray-200 shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer bg-white p-1 sm:p-2`}
                             style={{ 
                                 backgroundSize: 'contain',
                                 backgroundRepeat: 'no-repeat',
@@ -375,7 +353,7 @@ const BrandGrid = () => {
                 </div>
 
                 <div className="text-center mt-6 md:mt-12">
-                    <button className="bg-gray-800 text-white px-4 md:px-8 py-2 md:py-3 rounded-full font-semibold hover:bg-amber-600 transition-colors shadow-lg text-xs md:text-base">
+                    <button className="bg-gray-800 text-white px-4 sm:px-6 md:px-8 py-2 md:py-3 rounded-full font-semibold hover:bg-amber-600 transition-colors shadow-lg text-xs sm:text-sm md:text-base">
                         Посмотреть все
                     </button>
                 </div>

@@ -1,0 +1,165 @@
+/* ==========================================
+   ИСПРАВЛЕНИЕ ДЛЯ SAMSUNG GALAXY И ДРУГИХ ANDROID
+   ========================================== */
+
+/* Принудительное убирание клетчатого фона для всех мобильных */
+@media (max-width: 768px) {
+  /* Универсальное убирание фона */
+  *, *::before, *::after {
+    background-image: none !important;
+  }
+  
+  /* Специально для секций */
+  section, div, main, article, aside {
+    background-image: none !important;
+    background: #ffffff !important;
+  }
+  
+  /* Специально для элементов с паттерном */
+  .pattern-bg, 
+  [class*="pattern"],
+  [class*="bg-"],
+  section.pattern-bg {
+    background-image: none !important;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+  }
+  
+  /* Категории должны быть бежевыми */
+  .category-tile, 
+  a[class*="category"],
+  [class*="category"] {
+    background-image: none !important;
+    background: #D1B898 !important;
+    background-color: #D1B898 !important;
+  }
+  
+  /* Убираем inline стили */
+  [style*="background-image"],
+  [style*="backgroundImage"],
+  [style*="background:"] {
+    background-image: none !important;
+    background: #ffffff !important;
+  }
+  
+  /* Специально для элементов с inline стилями фона */
+  [style*="url("] {
+    background-image: none !important;
+    background: #ffffff !important;
+  }
+}
+
+/* Специальные исправления для Samsung Galaxy A51/71 (412px) */
+@media (max-width: 414px) and (min-width: 360px) {
+  /* Двойная защита */
+  * {
+    background-image: none !important;
+    background-attachment: scroll !important;
+  }
+  
+  /* Все секции */
+  section {
+    background-image: none !important;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+  }
+  
+  /* Категории */
+  .category-tile, 
+  a[class*="category"],
+  [class*="category"] {
+    background-image: none !important;
+    background: #D1B898 !important;
+    background-color: #D1B898 !important;
+  }
+  
+  /* Убираем любые паттерны */
+  .pattern-bg,
+  [class*="pattern"] {
+    background-image: none !important;
+    background: #ffffff !important;
+  }
+  
+  /* Принудительно убираем SVG паттерны */
+  [style*="data:image/svg"] {
+    background-image: none !important;
+    background: #ffffff !important;
+  }
+}
+
+/* Дополнительная защита для очень маленьких экранов */
+@media (max-width: 570px) {
+  /* Максимально принудительное убирание фона */
+  html, body, * {
+    background-image: none !important;
+  }
+  
+  /* Все секции белые */
+  section, div, main {
+    background: #ffffff !important;
+    background-image: none !important;
+  }
+  
+  /* Категории бежевые */
+  .category-tile, a[class*="category"] {
+    background: #D1B898 !important;
+    background-image: none !important;
+  }
+  
+  /* Убираем любые inline стили */
+  [style] {
+    background-image: none !important;
+  }
+}
+
+/* Защита от JavaScript стилей */
+@media (max-width: 768px) {
+  /* Убираем фон у элементов, которые могут получить стили через JS */
+  .grid, 
+  .container,
+  .mx-auto,
+  .max-w-6xl,
+  .py-12,
+  .px-4,
+  .sm\\:px-6,
+  .lg\\:px-8 {
+    background-image: none !important;
+    background: #ffffff !important;
+  }
+  
+  /* Специально для Tailwind классов */
+  .bg-white,
+  .bg-gray-50,
+  .bg-amber-50 {
+    background: #ffffff !important;
+    background-image: none !important;
+  }
+  
+  .bg-amber-600,
+  .bg-\\[\\#D1B898\\] {
+    background: #D1B898 !important;
+    background-image: none !important;
+  }
+}
+
+/* Критическое исправление для Android браузеров */
+@media (max-width: 768px) {
+  /* Убираем все возможные фоны */
+  * {
+    -webkit-background-image: none !important;
+    -moz-background-image: none !important;
+    -o-background-image: none !important;
+    background-image: none !important;
+  }
+  
+  /* Принудительно устанавливаем цвета */
+  section {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+  }
+  
+  .category-tile, a[class*="category"] {
+    background: #D1B898 !important;
+    background-color: #D1B898 !important;
+  }
+}
