@@ -288,7 +288,7 @@ const HeroSection = () => {
 
 const CategoryGrid = () => {
     return (
-        <section className="py-3 sm:py-6 md:py-12 px-3 sm:px-6 lg:px-8 pattern-bg">
+        <section className="py-3 sm:py-6 md:py-12 px-3 sm:px-6 lg:px-8 bg-white md:pattern-bg">
             <div className="container mx-auto max-w-6xl">
                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 md:gap-6 lg:gap-8">
                     {CATEGORIES.map((category) => (
@@ -313,7 +313,7 @@ const NewsSection = () => {
     ];
 
     return (
-        <section className="py-6 xs:py-8 sm:py-10 md:py-16 px-2 xs:px-3 sm:px-6 lg:px-8 pattern-bg">
+        <section className="py-6 xs:py-8 sm:py-10 md:py-16 px-2 xs:px-3 sm:px-6 lg:px-8 bg-white md:pattern-bg">
             <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-extrabold text-center mb-4 xs:mb-6 sm:mb-8 md:mb-10 text-gray-800">Новости</h2>
             <div className="container mx-auto max-w-6xl">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 xs:gap-4 sm:gap-5 md:gap-6">
@@ -359,7 +359,7 @@ const BrandGrid = () => {
     );
 
     return (
-        <section className="py-4 md:py-12 px-3 sm:px-6 lg:px-8 pattern-bg">
+        <section className="py-4 md:py-12 px-3 sm:px-6 lg:px-8 bg-white md:pattern-bg">
             <h2 className="text-xl sm:text-2xl md:text-4xl font-extrabold text-center mb-4 md:mb-10 text-gray-800">Бренды</h2>
             <div className="container mx-auto max-w-6xl">
                 <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 sm:gap-3 md:gap-4">
